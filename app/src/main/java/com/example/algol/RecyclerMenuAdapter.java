@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -37,12 +36,6 @@ public class RecyclerMenuAdapter extends RecyclerView.Adapter {
         }
     }
 
-    public void setFilter(List<String> items) {
-        items = new ArrayList<>();
-        items.addAll(items);
-        notifyDataSetChanged();
-    }
-
     @Override
     public RecyclerMenuAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         CardView cv = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item, parent, false);
@@ -51,7 +44,7 @@ public class RecyclerMenuAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        CardView cardView = (CardView) holder.itemView;
+        CardView cardView = (CardView)holder.itemView;
         ImageView imageView = (ImageView)cardView.findViewById(R.id.recycler_item_circle);
         TextView textView = (TextView)cardView.findViewById(R.id.recycler_item_title);
         textView.setText(items.get(position));
