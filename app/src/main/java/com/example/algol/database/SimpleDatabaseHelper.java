@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import com.example.algol.database.AlgolDbSchema.MainMenuTable;
 
 /**
  * Created by Сергей Пинкевич on 10.11.2016.
@@ -11,10 +12,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SimpleDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "alarms";
+    private static final String DB_NAME = "algol.db";
     private static final int DB_VERSION = 1;
-
-    private static final String MAIN_MENU_TABLE = "MENU_ITEMS";
 
     public SimpleDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -32,9 +31,9 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
 
     public void updateDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 1) {
-            db.execSQL("CREATE TABLE " + MAIN_MENU_TABLE + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + "NAME TEXT, "
-                    + "CATEGORY TEXT);");
+            db.execSQL("CREATE TABLE " + MainMenuTable.NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + MainMenuTable.Cols.NAME + ", "
+                    + MainMenuTable.Cols.CATEGORY + ");");
             insertItemToMenu(db, "Bubble Sort", "Sorting");
             insertItemToMenu(db, "Insertion Sort", "Sorting");
             insertItemToMenu(db, "Quick Sort", "Sorting");
@@ -47,6 +46,6 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
         ContentValues itemValues = new ContentValues();
         itemValues.put("NAME", name);
         itemValues.put("CATEGORY", category);
-        db.insert(MAIN_MENU_TABLE, null, itemValues);
+        db.insert(MainMenuTable.NAME, null, itemValues);
     }
 }

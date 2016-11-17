@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+import com.example.algol.database.AlgolDbSchema.MainMenuTable;
 
 import com.example.algol.database.SimpleDatabaseHelper;
 
@@ -49,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         try {
             SQLiteOpenHelper databaseHelper = new SimpleDatabaseHelper(this);
             SQLiteDatabase database = databaseHelper.getReadableDatabase();
-            Cursor cursor = database.query("MENU_ITEMS", null, null, null, null, null, null);
+            Cursor cursor = database.query(MainMenuTable.NAME, null, null, null, null, null, null);
             if (cursor.moveToFirst()) {
                 while (cursor.isAfterLast() == false) {
                     items.add(cursor.getString(2));
@@ -76,6 +77,8 @@ public class MenuActivity extends AppCompatActivity {
                 searchView.setQuery("", false);
                 searchView.setIconified(true);
                 searchItem.collapseActionView();
+                // Set Title to search query
+                MenuActivity.this.setTitle(query);
                 return false;
             }
 
