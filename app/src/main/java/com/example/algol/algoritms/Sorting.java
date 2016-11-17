@@ -6,13 +6,19 @@ package com.example.algol.algoritms;
 
 public class Sorting {
 
+    private int[] mArray;
+
+    public Sorting(int[] array) {
+        this.mArray = array;
+    }
+
     /**
      * In each iteration we compare pair of elements.
      * And on each pass we start from the beginning - it is not efficient
      * O(n) = n^2
      * @param array
      */
-    public static void bubbleSort(int[] array) {
+    public void bubbleSort(int[] array) {
         for (int i = 0; i < array.length - 1; i++)
             for (int j = 0; j < array.length - i - 1; j++)
                 if (array[j] > array[j + 1])
@@ -24,7 +30,7 @@ public class Sorting {
      * O(n) = n^2
      * @param array
      */
-    public static void insertionSort(int[] array) {
+    public void insertionSort(int[] array) {
         for (int i = 0; i < array.length; i++)
             for (int j = i; j > 0; j--)
                 if (array[j - 1] > array[j])
@@ -40,7 +46,7 @@ public class Sorting {
      *
      * @param array
      */
-    public static void selectionSort(int[] array) {
+    public void selectionSort(int[] array) {
         for (int i = 0; i < array.length; i++) {
             int min = i;
             for (int j = i + 1; j < array.length; j++)
@@ -50,7 +56,13 @@ public class Sorting {
         }
     }
 
-    public static void swap(int i, int j, int[] array) {
+    /**
+     * Swap elements array[i] and array[j]
+     * @param i
+     * @param j
+     * @param array
+     */
+    public void swap(int i, int j, int[] array) {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
