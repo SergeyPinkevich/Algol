@@ -1,7 +1,6 @@
 package com.example.algol;
 
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -11,15 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
-import com.example.algol.database.AlgolDbSchema.MainMenuTable;
 
+import com.example.algol.database.AlgolDbSchema.MainMenuTable;
 import com.example.algol.database.SimpleDatabaseHelper;
 
 import java.util.ArrayList;
@@ -29,6 +24,8 @@ public class MenuActivity extends AppCompatActivity {
 
     private RecyclerMenuAdapter adapter;
     private List<String> items;
+    private SQLiteDatabase mDatabase;
+    private Cursor mCursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +46,15 @@ public class MenuActivity extends AppCompatActivity {
         items = new ArrayList<>();
         try {
             SQLiteOpenHelper databaseHelper = new SimpleDatabaseHelper(this);
-            SQLiteDatabase database = databaseHelper.getReadableDatabase();
-            Cursor cursor = database.query(MainMenuTable.NAME, null, null, null, null, null, null);
-            if (cursor.moveToFirst()) {
-                while (cursor.isAfterLast() == false) {
-                    items.add(cursor.getString(2));
-                    cursor.moveToNext();
+            mDatabase = databaseHelper.getReadableDatabase();
+            mCursor = mDatabase.query(MainMenuTable.NAME, null, null, null, null, null, null);
+            if (mCursor.moveToFirst()) {
+                while (mCursor.isAfterLast() == false) {
+                    items.add(mCursor.getString(2));
+                    mCursor.moveToNext();
                 }
             }
-            cursor.close();
-            database.close();
+            close();
         } catch (SQLiteException e) {
             Toast.makeText(this, "Database is unavailable", Toast.LENGTH_SHORT).show();
         }
@@ -79,14 +75,43 @@ public class MenuActivity extends AppCompatActivity {
                 searchItem.collapseActionView();
                 // Set Title to search query
                 MenuActivity.this.setTitle(query);
+                searchByQuery(query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                return false;
+                searchByQuery(newText);
+                return true;
             }
         });
         return true;
+    }
+
+    public void searchByQuery(String query) {
+        ArrayList newList = new ArrayList();
+        if (query.equals(""))
+            newList.addAll(items);
+        else {
+            query = query.toLowerCase();
+            readFromDatabase();
+            for (String name : items) {
+                String temp = name.toLowerCase();
+                if (temp.contains(query))
+                    newList.add(name);
+            }
+        }
+        adapter.setFilter(newList);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        close();
+    }
+
+    public void close() {
+        mCursor.close();
+        mDatabase.close();
     }
 }

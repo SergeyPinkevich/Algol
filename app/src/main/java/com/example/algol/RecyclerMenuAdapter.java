@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -60,5 +61,11 @@ public class RecyclerMenuAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    public void setFilter(ArrayList newList) {
+        items = new ArrayList<>();
+        items.addAll(newList);
+        notifyDataSetChanged();
     }
 }

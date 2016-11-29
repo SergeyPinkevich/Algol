@@ -3,8 +3,6 @@ package com.example.algol.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.algol.MenuItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +15,9 @@ public class AlgolLab {
 
     private Context mContext;
     private SQLiteDatabase mDatabase;
-    private List<MenuItem> mMenuItems;
 
     private AlgolLab(Context context) {
         mContext = context.getApplicationContext();
         mDatabase = new SimpleDatabaseHelper(context).getWritableDatabase();
-        mMenuItems = new ArrayList<>();
     }
 }
