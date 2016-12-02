@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "598829862475",
+    "firebase_url": "https://algol-ba9b4.firebaseio.com",
+    "project_id": "algol-ba9b4",
+    "storage_bucket": "algol-ba9b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:598829862475:android:8c95380874fb3f6c",
+        "android_client_info": {
+          "package_name": "com.example.algol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "598829862475-haosakto1u3sneo6p1lb22lfgggmqiqt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.algol",
+            "certificate_hash": "DF2341AC214533EC09700B8A19B89E3FCCAD7007"
+          }
+        },
+        {
+          "client_id": "598829862475-1rip4u2e01mfp9ar7msu28kah0nvkflk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSXSSUs7CXg2BJFP7R2AVFBAjMtC2ltlY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "598829862475-1rip4u2e01mfp9ar7msu28kah0nvkflk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
