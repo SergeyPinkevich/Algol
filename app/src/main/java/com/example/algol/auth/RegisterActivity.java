@@ -59,17 +59,17 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = mInputPassword.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), "Enter email address", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.enter_email), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), "Enter password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.enter_password), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (password.length() < 6) {
-                    Toast.makeText(getApplicationContext(), "Password is too short, enter minimum 6 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.short_password), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     finish();
                                 }
                                 else
-                                    Toast.makeText(RegisterActivity.this, "Authentication failed." + task.getException(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, getString(R.string.auth_failed) + task.getException(), Toast.LENGTH_SHORT).show();
                             }
                         });
             }
