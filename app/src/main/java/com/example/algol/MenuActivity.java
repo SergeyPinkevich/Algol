@@ -1,5 +1,6 @@
 package com.example.algol;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -40,6 +41,15 @@ public class MenuActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        adapter.setListener(new RecyclerMenuAdapter.Listener() {
+            @Override
+            public void onClick(int position) {
+                Intent intent = new Intent(MenuActivity.this, AlgorithmDetailsActivity.class);
+                intent.putExtra(AlgorithmDetailsActivity.ALGORITHM_ID, position);
+                startActivity(intent);
+            }
+        });
     }
 
     public void readFromDatabase() {
@@ -47,9 +57,14 @@ public class MenuActivity extends AppCompatActivity {
         try {
             SQLiteOpenHelper databaseHelper = new SimpleDatabaseHelper(this);
             mDatabase = databaseHelper.getReadableDatabase();
+
+            Algorithm.algorithms = new ArrayList<>();
+
             mCursor = mDatabase.query(MainMenuTable.NAME, null, null, null, null, null, null);
             if (mCursor.moveToFirst()) {
                 while (mCursor.isAfterLast() == false) {
+                    Algorithm temp = new Algorithm(mCursor.getInt(0), mCursor.getString(2), mCursor.getString(1), mCursor.getString(3));
+                    Algorithm.algorithms.add(temp);
                     items.add(mCursor.getString(2));
                     mCursor.moveToNext();
                 }

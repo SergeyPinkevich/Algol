@@ -1,7 +1,6 @@
 package com.example.algol.auth;
 
 import android.content.Intent;
-import android.graphics.LinearGradient;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

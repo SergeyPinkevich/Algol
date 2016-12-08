@@ -2,8 +2,11 @@ package com.example.algol.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.algol.R;
 import com.example.algol.database.AlgolDbSchema.MainMenuTable;
 
 /**
@@ -33,19 +36,22 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
         if (oldVersion < 1) {
             db.execSQL("CREATE TABLE " + MainMenuTable.NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + MainMenuTable.Cols.NAME + ", "
-                    + MainMenuTable.Cols.CATEGORY + ");");
-            insertItemToMenu(db, "Bubble Sort", "Sorting");
-            insertItemToMenu(db, "Insertion Sort", "Sorting");
-            insertItemToMenu(db, "Quick Sort", "Sorting");
-            insertItemToMenu(db, "Depth First Search", "Graph");
-            insertItemToMenu(db, "Breadth First Search", "Graph");
+                    + MainMenuTable.Cols.CATEGORY + ","
+                    + MainMenuTable.Cols.DESCRITION + ");");
+            insertItemToMenu(db, "Bubble Sort", "Sorting", "Bubble sort description");
+            insertItemToMenu(db, "Selection Sort", "Sorting", "Selection sort description");
+            insertItemToMenu(db, "Insertion Sort", "Sorting", "insertion sort description");
+//            insertItemToMenu(db, "Quick Sort", "Sorting");
+//            insertItemToMenu(db, "Depth First Search", "Graph");
+//            insertItemToMenu(db, "Breadth First Search", "Graph");
         }
     }
 
-    public void insertItemToMenu(SQLiteDatabase db, String category, String name) {
+    public void insertItemToMenu(SQLiteDatabase db, String category, String name, String description) {
         ContentValues itemValues = new ContentValues();
         itemValues.put("NAME", name);
         itemValues.put("CATEGORY", category);
+        itemValues.put("DESCRIPTION", description);
         db.insert(MainMenuTable.NAME, null, itemValues);
     }
 }
