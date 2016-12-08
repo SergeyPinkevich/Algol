@@ -17,9 +17,11 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "algol.db";
     private static final int DB_VERSION = 1;
+    private Context mContext;
 
     public SimpleDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+        mContext = context;
     }
 
     @Override
@@ -38,9 +40,9 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
                     + MainMenuTable.Cols.NAME + ", "
                     + MainMenuTable.Cols.CATEGORY + ","
                     + MainMenuTable.Cols.DESCRITION + ");");
-            insertItemToMenu(db, "Bubble Sort", "Sorting", "Bubble sort description");
-            insertItemToMenu(db, "Selection Sort", "Sorting", "Selection sort description");
-            insertItemToMenu(db, "Insertion Sort", "Sorting", "insertion sort description");
+            insertItemToMenu(db, "Bubble Sort", "Sorting", mContext.getString(R.string.bubble_sort_description));
+            insertItemToMenu(db, "Selection Sort", "Sorting", mContext.getString(R.string.selection_sort_description));
+            insertItemToMenu(db, "Insertion Sort", "Sorting", mContext.getString(R.string.insertion_sort_description));
 //            insertItemToMenu(db, "Quick Sort", "Sorting");
 //            insertItemToMenu(db, "Depth First Search", "Graph");
 //            insertItemToMenu(db, "Breadth First Search", "Graph");
