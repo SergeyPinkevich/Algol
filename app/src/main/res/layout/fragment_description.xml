@@ -12,7 +12,7 @@
         android:textStyle="bold"
         android:textSize="20sp"/>
 
-    <TextView
+    <com.uncopt.android.widget.text.justify.JustifiedTextView
         android:id="@+id/description_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

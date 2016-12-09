@@ -9,13 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.uncopt.android.widget.text.justify.JustifiedTextView;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DescriptionFragment extends Fragment {
 
-    private TextView mTextDescription;
+    private JustifiedTextView mTextDescription;
     private TextView mTitleDescription;
 
     public DescriptionFragment() {
@@ -36,7 +38,7 @@ public class DescriptionFragment extends Fragment {
         mTitleDescription = (TextView) view.findViewById(R.id.description_title);
         mTitleDescription.setText(getArguments().getString(AlgorithmDetailsActivity.NAME));
 
-        mTextDescription = (TextView) view.findViewById(R.id.description_text);
+        mTextDescription = (JustifiedTextView) view.findViewById(R.id.description_text);
         mTextDescription.setText(getArguments().getString(AlgorithmDetailsActivity.DESCRIPTION));
         mTextDescription.setMovementMethod(new ScrollingMovementMethod());
 
