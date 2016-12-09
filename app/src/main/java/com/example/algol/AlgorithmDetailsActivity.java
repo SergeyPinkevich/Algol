@@ -20,6 +20,7 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
     public static final String DESCRIPTION = "description";
+    public static final String NAME = "name";
     public static final String ALGORITHM_ID = "algorithmId";
     private int algorithmId;
 
@@ -53,6 +54,12 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    @Override
+    public boolean onSupportNavigateUp(){
+        finish();
+        return true;
+    }
+
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -74,6 +81,8 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
         public void addDescriptionFragment() {
             Bundle bundle = new Bundle();
             bundle.putString(DESCRIPTION, Algorithm.algorithms.get(algorithmId).getDescription());
+            bundle.putString(NAME, Algorithm.algorithms.get(algorithmId).getName());
+
             mDescriptionFragment = new DescriptionFragment();
             mDescriptionFragment.setArguments(bundle);
             mFragmentList.add(mDescriptionFragment);
