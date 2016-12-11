@@ -9,6 +9,16 @@
     <string name="bubble_sort">Bubble Sort</string>
     <string name="insertion_sort">Insertion Sort</string>
     <string name="quick_sort">Quick Sort</string>
+    
+    <!-- Navigation drawer -->
+    <string name="open_drawer">Open drawer</string>
+    <string name="close_drawer">Close drawer</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_notifications">Notifications</string>
+    <string name="nav_rate">Rate</string>
+    <string name="nav_logout">Log out</string>
 
     <!-- Algorithms's description -->
     <string name="bubble_sort_description">Bubble sort, sometimes referred to as sinking sort, is a simple sorting
@@ -19,17 +29,14 @@
         even when compared to insertion sort. It can be practical if the input is usually in sorted order but may occasionally
         have some out-of-order elements nearly in position.</string>
     <string name="insertion_sort_description">The algorithm that people often use to sort bridge hands is to consider the cards one at a time, inserting each into its proper place among those already
-    considered (keeping them sorted). In a computer implementation, we need to make
-    space to insert the current item by moving larger items one position to the right, before
-    inserting the current item into the vacated position. \n \n
-    As in selection sort, the items to the left of the current index are in sorted order during the sort, but they are not in their final position, as they may have to be moved to
-    make room for smaller items encountered later. The array is, however, fully sorted when
-    the index reaches the right end. \n \n
-    Unlike that of selection sort, the running time of insertion sort depends on the initial order of the items in the input. For example, if the array is large and its entries are
-    already in order (or nearly in order), then insertion sort is much, much faster than if
-    the entries are randomly ordered or in reverse order.</string>
-    <string name="selection_sort_description">The algorithm works by selecting the smallest unsorted item and then swapping it with the item in the next position to be filled. \n \n
-    The selection sort works as follows: you look through the entire array for the smallest element, once you find it you swap it (the smallest element) with the first element of the array. Then you look for the smallest element in the remaining array (an array without the first element) and swap it with the second element. Then you look for the smallest element in the remaining array (an array without first and second elements) and swap it with the third element, and so on.</string>
+        considered (keeping them sorted). In a computer implementation, we need to make
+        space to insert the current item by moving larger items one position to the right, before
+        inserting the current item into the vacated position. \n \nAs in selection sort, the items to the left of the current index are in sorted order during the sort, but they are not in their final position, as they may have to be moved to
+        make room for smaller items encountered later. The array is, however, fully sorted when
+        the index reaches the right end. \n \nUnlike that of selection sort, the running time of insertion sort depends on the initial order of the items in the input. For example, if the array is large and its entries are
+        already in order (or nearly in order), then insertion sort is much, much faster than if
+        the entries are randomly ordered or in reverse order.</string>
+    <string name="selection_sort_description">The algorithm works by selecting the smallest unsorted item and then swapping it with the item in the next position to be filled.\n \nThe selection sort works as follows: you look through the entire array for the smallest element, once you find it you swap it (the smallest element) with the first element of the array. Then you look for the smallest element in the remaining array (an array without the first element) and swap it with the second element. Then you look for the smallest element in the remaining array (an array without first and second elements) and swap it with the third element, and so on.</string>
 
     <!-- Auth strings -->
     <string name="enter_email">Enter email address</string>

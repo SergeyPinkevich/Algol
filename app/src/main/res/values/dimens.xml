@@ -10,4 +10,6 @@
     <dimen name="tab_label">14sp</dimen>
     <dimen name="custom_tab_layout_height">72dp</dimen>
     <dimen name="description_fragment_padding">15dp</dimen>
+
+    <dimen name="profile_size">100dp</dimen>
 </resources>
