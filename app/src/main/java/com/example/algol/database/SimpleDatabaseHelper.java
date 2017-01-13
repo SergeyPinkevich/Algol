@@ -50,14 +50,14 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
                     + MainMenuTable.Cols.CATEGORY + " TEXT, "
                     + MainMenuTable.Cols.DESCRIPTION + " TEXT);");
 
-            addAlgorithms();
+            addAlgorithms(db);
         }
     }
 
-    public void addAlgorithms() {
+    public void addAlgorithms(SQLiteDatabase db) {
         AlgorithmRepo algorithmRepo = new AlgorithmRepo(mContext);
-        algorithmRepo.addAlgorithm(new Algorithm(0, "Bubble Sort", "Sorting", mContext.getString(R.string.bubble_sort_description)));
-        algorithmRepo.addAlgorithm(new Algorithm(1, "Selection Sort", "Sorting", mContext.getString(R.string.selection_sort_description)));
-        algorithmRepo.addAlgorithm(new Algorithm(2, "Insertion Sort", "Sorting", mContext.getString(R.string.insertion_sort_description)));
+        algorithmRepo.addAlgorithm(db, new Algorithm(0, "Bubble Sort", "Sorting", mContext.getString(R.string.bubble_sort_description)));
+        algorithmRepo.addAlgorithm(db, new Algorithm(1, "Selection Sort", "Sorting", mContext.getString(R.string.selection_sort_description)));
+        algorithmRepo.addAlgorithm(db, new Algorithm(2, "Insertion Sort", "Sorting", mContext.getString(R.string.insertion_sort_description)));
     }
 }

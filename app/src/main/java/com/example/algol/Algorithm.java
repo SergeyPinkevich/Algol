@@ -13,8 +13,6 @@ public class Algorithm {
     private String category;
     private String description;
 
-    public static ArrayList<Algorithm> algorithms;
-
     public Algorithm(int id, String name, String category, String description) {
         this.id = id;
         this.name = name;

@@ -23,11 +23,9 @@ public class AlgorithmRepo {
         mHelper = SimpleDatabaseHelper.getInstance(context);
     }
 
-    public void addAlgorithm(Algorithm algorithm) {
-        SQLiteDatabase database = mHelper.getWritableDatabase();
+    public void addAlgorithm(SQLiteDatabase db, Algorithm algorithm) {
         ContentValues contentValues = getContentValues(algorithm);
-        database.insert(AlgolDbSchema.MainMenuTable.NAME, null, contentValues);
-        database.close();
+        db.insert(AlgolDbSchema.MainMenuTable.NAME, null, contentValues);
     }
 
     public Algorithm getAlgorithmById(int id) {

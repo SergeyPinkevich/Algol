@@ -19,13 +19,14 @@ public class MenuActivity extends AppCompatActivity {
     private RecyclerMenuAdapter adapter;
     private List<String> items;
     private AlgorithmRepo mAlgorithmRepo;
+    private ArrayList<Algorithm> algorithmsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         readFromDatabase();
 
@@ -38,7 +39,10 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(int position) {
                 Intent intent = new Intent(MenuActivity.this, AlgorithmDetailsActivity.class);
-                intent.putExtra(AlgorithmDetailsActivity.ALGORITHM_ID, position);
+                String name = items.get(position);
+                for (Algorithm a : algorithmsList)
+                    if (a.getName() == name)
+                        intent.putExtra(AlgorithmDetailsActivity.ALGORITHM_ID, a.getId());
                 startActivity(intent);
             }
         });
@@ -48,7 +52,7 @@ public class MenuActivity extends AppCompatActivity {
         items = new ArrayList<>();
 
         mAlgorithmRepo = new AlgorithmRepo(this);
-        ArrayList<Algorithm> algorithmsList = mAlgorithmRepo.getAlgorithmsList();
+        algorithmsList = mAlgorithmRepo.getAlgorithmsList();
         for (Algorithm a : algorithmsList)
             items.add(a.getName());
     }
@@ -82,9 +86,11 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void searchByQuery(String query) {
-        ArrayList newList = new ArrayList();
-        if (query.equals(""))
-            newList.addAll(items);
+        ArrayList<String> newList = new ArrayList();
+        if (query.equals("")) {
+            for (Algorithm algorithm : algorithmsList)
+                newList.add(algorithm.getName());
+        }
         else {
             query = query.toLowerCase();
             readFromDatabase();
@@ -94,6 +100,7 @@ public class MenuActivity extends AppCompatActivity {
                     newList.add(name);
             }
         }
+        items = newList;
         adapter.setFilter(newList);
     }
 }
