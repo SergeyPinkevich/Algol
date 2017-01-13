@@ -2,7 +2,6 @@ package com.example.algol.database;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -14,14 +13,22 @@ import com.example.algol.database.AlgolDbSchema.MainMenuTable;
  */
 
 public class SimpleDatabaseHelper extends SQLiteOpenHelper {
+    private static SimpleDatabaseHelper sInstance;
 
     private static final String DB_NAME = "algol.db";
     private static final int DB_VERSION = 1;
     private Context mContext;
 
-    public SimpleDatabaseHelper(Context context) {
+    private SimpleDatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         mContext = context;
+    }
+
+    public static synchronized SimpleDatabaseHelper getInstance(Context context) {
+        if (sInstance == null) {
+            sInstance = new SimpleDatabaseHelper(context);
+        }
+        return sInstance;
     }
 
     @Override
@@ -39,7 +46,7 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE " + MainMenuTable.NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + MainMenuTable.Cols.NAME + ", "
                     + MainMenuTable.Cols.CATEGORY + ","
-                    + MainMenuTable.Cols.DESCRITION + ");");
+                    + MainMenuTable.Cols.DESCRIPTION + ");");
             insertItemToMenu(db, "Bubble Sort", "Sorting", mContext.getString(R.string.bubble_sort_description));
             insertItemToMenu(db, "Selection Sort", "Sorting", mContext.getString(R.string.selection_sort_description));
             insertItemToMenu(db, "Insertion Sort", "Sorting", mContext.getString(R.string.insertion_sort_description));

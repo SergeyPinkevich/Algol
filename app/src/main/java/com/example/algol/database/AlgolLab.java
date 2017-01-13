@@ -18,6 +18,6 @@ public class AlgolLab {
 
     private AlgolLab(Context context) {
         mContext = context.getApplicationContext();
-        mDatabase = new SimpleDatabaseHelper(context).getWritableDatabase();
+        mDatabase = SimpleDatabaseHelper.getInstance(context).getWritableDatabase();
     }
 }
