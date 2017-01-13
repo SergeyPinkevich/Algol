@@ -14,4 +14,6 @@
 
     <dimen name="interaction_fragment_padding">10dp</dimen>
     <dimen name="description_fragment_padding">15dp</dimen>
+
+    <dimen name="profile_size">100dp</dimen>
 </resources>
