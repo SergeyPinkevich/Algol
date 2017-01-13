@@ -55,7 +55,7 @@ public class MenuActivity extends AppCompatActivity {
     public void readFromDatabase() {
         items = new ArrayList<>();
         try {
-            SQLiteOpenHelper databaseHelper = new SimpleDatabaseHelper(this);
+            SQLiteOpenHelper databaseHelper = SimpleDatabaseHelper.getInstance(this);
             mDatabase = databaseHelper.getReadableDatabase();
 
             Algorithm.algorithms = new ArrayList<>();

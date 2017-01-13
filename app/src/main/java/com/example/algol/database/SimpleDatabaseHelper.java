@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.algol.Algorithm;
 import com.example.algol.R;
 import com.example.algol.database.AlgolDbSchema.MainMenuTable;
 
@@ -44,23 +45,19 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
     public void updateDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 1) {
             db.execSQL("CREATE TABLE " + MainMenuTable.NAME + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    + MainMenuTable.Cols.NAME + ", "
-                    + MainMenuTable.Cols.CATEGORY + ","
-                    + MainMenuTable.Cols.DESCRIPTION + ");");
-            insertItemToMenu(db, "Bubble Sort", "Sorting", mContext.getString(R.string.bubble_sort_description));
-            insertItemToMenu(db, "Selection Sort", "Sorting", mContext.getString(R.string.selection_sort_description));
-            insertItemToMenu(db, "Insertion Sort", "Sorting", mContext.getString(R.string.insertion_sort_description));
-//            insertItemToMenu(db, "Quick Sort", "Sorting");
-//            insertItemToMenu(db, "Depth First Search", "Graph");
-//            insertItemToMenu(db, "Breadth First Search", "Graph");
+                    + MainMenuTable.Cols.ID + " INTEGER, "
+                    + MainMenuTable.Cols.NAME + " TEXT, "
+                    + MainMenuTable.Cols.CATEGORY + " TEXT, "
+                    + MainMenuTable.Cols.DESCRIPTION + " TEXT);");
+
+            addAlgorithms();
         }
     }
 
-    public void insertItemToMenu(SQLiteDatabase db, String category, String name, String description) {
-        ContentValues itemValues = new ContentValues();
-        itemValues.put("NAME", name);
-        itemValues.put("CATEGORY", category);
-        itemValues.put("DESCRIPTION", description);
-        db.insert(MainMenuTable.NAME, null, itemValues);
+    public void addAlgorithms() {
+        AlgorithmRepo algorithmRepo = new AlgorithmRepo(mContext);
+        algorithmRepo.addAlgorithm(new Algorithm(0, "Bubble Sort", "Sorting", mContext.getString(R.string.bubble_sort_description)));
+        algorithmRepo.addAlgorithm(new Algorithm(1, "Selection Sort", "Sorting", mContext.getString(R.string.selection_sort_description)));
+        algorithmRepo.addAlgorithm(new Algorithm(2, "Insertion Sort", "Sorting", mContext.getString(R.string.insertion_sort_description)));
     }
 }
