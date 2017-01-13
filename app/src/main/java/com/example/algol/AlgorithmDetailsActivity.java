@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +24,7 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
     private int algorithmId;
 
     private DescriptionFragment mDescriptionFragment;
+    private CanvasView canvas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

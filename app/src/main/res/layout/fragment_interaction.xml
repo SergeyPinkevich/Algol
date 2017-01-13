@@ -2,10 +2,67 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:id="@+id/layout_interaction"
+             android:padding="@dimen/interaction_fragment_padding"
              tools:context="com.example.algol.InteractionFragment">
 
+    <!-- TextView for 4 lines explanation text -->
     <TextView
+        android:id="@+id/interaction_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="92dp"
+        android:textSize="20sp"/>
+
+    <com.example.algol.CanvasView
+        android:id="@+id/canvas_view"
+        android:layout_marginTop="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:background="@android:color/transparent"/>
+
+    <!-- Layout for interaction control panel -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:weightSum="5">
+
+        <ImageButton
+            android:id="@+id/back_origin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_back"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/step_back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_step_back"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/start_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_start"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/step_forward_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_step_forward"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:id="@+id/speed_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_speed"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
 </FrameLayout>
