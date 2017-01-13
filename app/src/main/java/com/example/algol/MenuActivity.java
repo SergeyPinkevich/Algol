@@ -1,10 +1,6 @@
 package com.example.algol;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -13,10 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import com.example.algol.database.AlgolDbSchema.MainMenuTable;
-import com.example.algol.database.SimpleDatabaseHelper;
+import com.example.algol.database.AlgorithmRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +18,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private RecyclerMenuAdapter adapter;
     private List<String> items;
-    private SQLiteDatabase mDatabase;
-    private Cursor mCursor;
+    private AlgorithmRepo mAlgorithmRepo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,25 +46,11 @@ public class MenuActivity extends AppCompatActivity {
 
     public void readFromDatabase() {
         items = new ArrayList<>();
-        try {
-            SQLiteOpenHelper databaseHelper = SimpleDatabaseHelper.getInstance(this);
-            mDatabase = databaseHelper.getReadableDatabase();
 
-            Algorithm.algorithms = new ArrayList<>();
-
-            mCursor = mDatabase.query(MainMenuTable.NAME, null, null, null, null, null, null);
-            if (mCursor.moveToFirst()) {
-                while (mCursor.isAfterLast() == false) {
-                    Algorithm temp = new Algorithm(mCursor.getInt(0), mCursor.getString(2), mCursor.getString(1), mCursor.getString(3));
-                    Algorithm.algorithms.add(temp);
-                    items.add(mCursor.getString(2));
-                    mCursor.moveToNext();
-                }
-            }
-            close();
-        } catch (SQLiteException e) {
-            Toast.makeText(this, "Database is unavailable", Toast.LENGTH_SHORT).show();
-        }
+        mAlgorithmRepo = new AlgorithmRepo(this);
+        ArrayList<Algorithm> algorithmsList = mAlgorithmRepo.getAlgorithmsList();
+        for (Algorithm a : algorithmsList)
+            items.add(a.getName());
     }
 
     @Override
@@ -117,16 +95,5 @@ public class MenuActivity extends AppCompatActivity {
             }
         }
         adapter.setFilter(newList);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        close();
-    }
-
-    public void close() {
-        mCursor.close();
-        mDatabase.close();
     }
 }
