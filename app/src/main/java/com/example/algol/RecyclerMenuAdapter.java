@@ -56,7 +56,8 @@ public class RecyclerMenuAdapter extends RecyclerView.Adapter {
         ImageView imageView = (ImageView)cardView.findViewById(R.id.recycler_item_circle);
         TextView textView = (TextView)cardView.findViewById(R.id.recycler_item_title);
         textView.setText(items.get(position));
-        TextDrawable drawable = TextDrawable.builder().buildRound(String.valueOf(textView.getText().charAt(0)), getRandomColor());
+        String firstLetter = String.valueOf(textView.getText().charAt(0));
+        TextDrawable drawable = TextDrawable.builder().buildRound(firstLetter, getRandomColor(firstLetter));
         imageView.setBackground(drawable);
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -72,9 +73,10 @@ public class RecyclerMenuAdapter extends RecyclerView.Adapter {
         this.mListener = listener;
     }
 
-    public int getRandomColor() {
+    public int getRandomColor(String text) {
         int colors[] = mContext.getResources().getIntArray(R.array.randomColors);
-        return colors[new Random().nextInt(colors.length)];
+        int code = (int)text.charAt(0);
+        return colors[code % colors.length];
     }
 
     @Override
