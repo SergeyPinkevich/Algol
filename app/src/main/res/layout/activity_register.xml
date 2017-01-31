@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_signup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.algol.auth.RegisterActivity">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,11 +26,12 @@
 
         <TextView
             android:id="@+id/app_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_title"
-            android:textSize="50sp"
-            android:textColor="@color/white"/>
+            android:textSize="43sp"
+            android:textColor="@color/white"
+            android:gravity="center"/>
 
         <ImageView
             android:layout_width="@dimen/logo_square_size"
@@ -98,13 +108,5 @@
             android:textColor="@color/white"
             android:textSize="15sp"/>
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="20dp"
-        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>
