@@ -47,8 +47,8 @@
     <string name="failed_reset">Failed to send reset email</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="button_login">LOGIN</string>
-    <string name="button_register">REGISTER</string>
+    <string name="button_login">SIGN IN</string>
+    <string name="button_register">SIGN UP</string>
     <string name="button_forgot_password">Forgot your password</string>
     <string name="button_reset_password">RESET PASSWORD</string>
     <string name="button_back">BACK</string>
@@ -56,5 +56,7 @@
     <string name="link_to_login">Already registered. Login Me!</string>
     <string name="label_forgot_password">Forgot password?</string>
     <string name="message_forgot_password">We just need your registered Email Id to sent you password reset instructions</string>
+    <string name="app_title">ALGORITHMS</string>
+    <string name="app_version">v0.1b</string>
 
 </resources>

@@ -10,17 +10,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/splash_bg"
         android:gravity="center"
         android:padding="@dimen/activity_authentication_padding"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_title"
+            android:textSize="50sp"
+            android:textColor="@color/white"/>
 
         <ImageView
             android:layout_width="@dimen/logo_square_size"
             android:layout_height="@dimen/logo_square_size"
             android:layout_gravity="center_horizontal"
+            android:src="@drawable/icon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_version"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:textColor="@color/white"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -60,10 +74,10 @@
             android:layout_height="wrap_content"
             style="?android:textAppearanceSmall"
             android:layout_marginTop="16dp"
-            android:background="@color/colorAccent"
-            android:textColor="@color/black"
-            android:text="@string/button_login"
-            android:textStyle="bold"/>
+            android:background="@color/aquamarine"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="@string/button_login"/>
 
         <Button
             android:id="@+id/reset_password_button"
@@ -72,7 +86,7 @@
             android:background="@null"
             android:text="@string/button_forgot_password"
             android:textAllCaps="false"
-            android:textColor="@color/colorAccent"/>
+            android:textColor="@color/aquamarine"/>
 
         <Button
             android:id="@+id/sign_up_button"
