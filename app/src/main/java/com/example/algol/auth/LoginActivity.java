@@ -32,11 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
-        if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, MenuActivity.class));
-            finish();
-        }
+
         setContentView(R.layout.activity_login);
 
         mTitle = (TextView) findViewById(R.id.app_title);
