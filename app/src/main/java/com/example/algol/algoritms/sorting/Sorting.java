@@ -1,10 +1,12 @@
-package com.example.algol.algoritms;
+package com.example.algol.algoritms.sorting;
+
+import com.example.algol.algoritms.DataHandler;
 
 /**
  * Created by Сергей Пинкевич on 16.11.2016.
  */
 
-public class Sorting {
+public class Sorting implements DataHandler {
 
     /**
      * Good way to randomize input array
@@ -140,5 +142,15 @@ public class Sorting {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
+    }
+
+    @Override
+    public void onDataReceived(Object data) {
+
+    }
+
+    @Override
+    public void onTextReceived(String text) {
+
     }
 }

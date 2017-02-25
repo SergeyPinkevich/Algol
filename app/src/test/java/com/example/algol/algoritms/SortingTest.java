@@ -1,8 +1,9 @@
 package com.example.algol.algoritms;
 
+import com.example.algol.algoritms.sorting.Sorting;
+
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runners.Suite;
 
 import static org.junit.Assert.*;
 

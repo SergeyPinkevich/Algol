@@ -2,6 +2,7 @@ package com.example.algol;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,91 +17,15 @@ import java.util.List;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private RecyclerMenuAdapter adapter;
-    private List<String> items;
-    private AlgorithmRepo mAlgorithmRepo;
-    private ArrayList<Algorithm> algorithmsList;
+    private FragmentTransaction mFragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-        readFromDatabase();
-
-        adapter = new RecyclerMenuAdapter(items, this);
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        adapter.setListener(new RecyclerMenuAdapter.Listener() {
-            @Override
-            public void onClick(int position) {
-                Intent intent = new Intent(MenuActivity.this, AlgorithmDetailsActivity.class);
-                String name = items.get(position);
-                for (Algorithm a : algorithmsList)
-                    if (a.getName() == name)
-                        intent.putExtra(AlgorithmDetailsActivity.ALGORITHM_ID, a.getId());
-                startActivity(intent);
-            }
-        });
-    }
-
-    public void readFromDatabase() {
-        items = new ArrayList<>();
-
-        mAlgorithmRepo = new AlgorithmRepo(this);
-        algorithmsList = mAlgorithmRepo.getAlgorithmsList();
-        for (Algorithm a : algorithmsList)
-            items.add(a.getName());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_search, menu);
-        final MenuItem searchItem = menu.findItem(R.id.action_search);
-        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // Reset SearchView
-                searchView.clearFocus();
-                searchView.setQuery("", false);
-                searchView.setIconified(true);
-                searchItem.collapseActionView();
-                // Set Title to search query
-                MenuActivity.this.setTitle(query);
-                searchByQuery(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                searchByQuery(newText);
-                return true;
-            }
-        });
-        return true;
-    }
-
-    public void searchByQuery(String query) {
-        ArrayList<String> newList = new ArrayList();
-        if (query.equals("")) {
-            for (Algorithm algorithm : algorithmsList)
-                newList.add(algorithm.getName());
-        }
-        else {
-            query = query.toLowerCase();
-            readFromDatabase();
-            for (String name : items) {
-                String temp = name.toLowerCase();
-                if (temp.contains(query))
-                    newList.add(name);
-            }
-        }
-        items = newList;
-        adapter.setFilter(newList);
+        mFragmentTransaction = getSupportFragmentManager().beginTransaction();
+        mFragmentTransaction.add(R.id.fragment_container, new HomeFragment());
+        mFragmentTransaction.commit();
     }
 }

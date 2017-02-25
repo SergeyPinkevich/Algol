@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Algol</string>
 
+    <string name="drawer_open">drawer open</string>
+    <string name="drawer_close">drawer close</string>
+
     <!-- Categories -->
     <string name="title_sort">Sorting</string>
     <string name="title_graph">Graph algorithms</string>
@@ -9,7 +12,7 @@
     <string name="bubble_sort">Bubble Sort</string>
     <string name="insertion_sort">Insertion Sort</string>
     <string name="quick_sort">Quick Sort</string>
-    
+
     <!-- Navigation drawer -->
     <string name="open_drawer">Open drawer</string>
     <string name="close_drawer">Close drawer</string>
@@ -58,5 +61,8 @@
     <string name="message_forgot_password">We just need your registered Email Id to sent you password reset instructions</string>
     <string name="app_title">ALGORITHMS</string>
     <string name="app_version">v0.1b</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
