@@ -15,9 +15,7 @@ public class Sorting implements DataHandler {
     public static int[] shuffling(int[] array) {
         for (int i = 0; i < array.length; i++) {
             int r = (int) (Math.random() * array.length);
-            int temp = array[r];
-            array[r] = array[i];
-            array[i] = temp;
+            swap(r, i,array);
         }
         return array;
     }
@@ -38,11 +36,8 @@ public class Sorting implements DataHandler {
 
         while (h >= 1) {
             for (int i = 0; i < array.length; i++)
-                for (int j = i; j >= h && array[j - 1] > array[j]; j -= h) {
-                    int temp = array[j];
-                    array[j] = array[j - 1];
-                    array[j - 1] = temp;
-                }
+                for (int j = i; j >= h && array[j - 1] > array[j]; j -= h)
+                    swap(j, j - 1, array);
             h /= 3;
         }
         return array;
