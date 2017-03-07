@@ -1,5 +1,6 @@
 package com.example.algol;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -10,7 +11,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.example.algol.auth.LoginActivity;
 import com.example.algol.navigation.HomeFragment;
 import com.example.algol.navigation.NotificationFragment;
 import com.example.algol.navigation.SettingsFragment;
@@ -25,7 +28,8 @@ public class MenuActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
 
     private FirebaseAuth mAuth;
-
+    private TextView mUserEmailText;
+    private String mUserEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,16 @@ public class MenuActivity extends AppCompatActivity {
 
         setupNavigationView();
 
+        setUserEmail();
+
         setNewFragment(new HomeFragment());
+    }
+
+    private void setUserEmail() {
+        mAuth = FirebaseAuth.getInstance();
+        mUserEmail = mAuth.getCurrentUser().getDisplayName();
+        mUserEmailText = (TextView)mNavigationView.findViewById(R.id.login_text);
+        mUserEmailText.setText(mUserEmail);
     }
 
     @Override
@@ -45,7 +58,7 @@ public class MenuActivity extends AppCompatActivity {
         mDrawerToggle.syncState();
     }
 
-    public void setupNavigationDrawer() {
+    private void setupNavigationDrawer() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -53,7 +66,7 @@ public class MenuActivity extends AppCompatActivity {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    public void setupNavigationView() {
+    private void setupNavigationView() {
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -74,13 +87,23 @@ public class MenuActivity extends AppCompatActivity {
                         item.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         break;
+                    case R.id.nav_logout:
+                        logout();
+                        break;
                 }
                 return false;
             }
         });
     }
 
-    public void setNewFragment(Fragment fragment) {
+    private void logout() {
+        mDrawerLayout.closeDrawers();
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(MenuActivity.this, LoginActivity.class));
+        finish();
+    }
+
+    private void setNewFragment(Fragment fragment) {
         mFragmentTransaction = getSupportFragmentManager().beginTransaction();
         mFragmentTransaction.replace(R.id.fragment_container, fragment);
         mFragmentTransaction.commit();
