@@ -1,4 +1,4 @@
-package com.example.algol;
+package com.example.algol.navigation;
 
 
 import android.content.Context;
@@ -16,6 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.algol.Algorithm;
+import com.example.algol.AlgorithmDetailsActivity;
+import com.example.algol.R;
+import com.example.algol.RecyclerMenuAdapter;
 import com.example.algol.database.AlgorithmRepo;
 
 import java.util.ArrayList;
@@ -111,10 +115,9 @@ public class HomeFragment extends Fragment {
 
     public void searchByQuery(String query) {
         ArrayList<String> newList = new ArrayList();
-        if (query.equals("")) {
+        if (query.equals(""))
             for (Algorithm algorithm : algorithmsList)
                 newList.add(algorithm.getName());
-        }
         else {
             query = query.toLowerCase();
             readFromDatabase(getActivity().getApplicationContext());
