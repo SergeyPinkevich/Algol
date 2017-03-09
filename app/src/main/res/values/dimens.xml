@@ -14,4 +14,7 @@
     <dimen name="description_fragment_padding">15dp</dimen>
 
     <dimen name="profile_size">100dp</dimen>
+    <dimen name="analyses_margin_elements">10dp</dimen>
+    <dimen name="analyses_text_view">20sp</dimen>
+    <dimen name="analyses_time">38sp</dimen>
 </resources>

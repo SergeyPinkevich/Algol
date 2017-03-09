@@ -2,10 +2,95 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+             android:paddingTop="16dp"
+             android:paddingBottom="16dp"
+             android:paddingLeft="16dp"
+             android:paddingRight="16dp"
+             xmlns:foo="http://schemas.android.com/apk/res-auto"
+             android:background="@color/white"
              tools:context="com.example.algol.AnalysisFragment">
 
-    <TextView
+    <RelativeLayout
+        android:paddingTop="150dp"
+        android:id="@+id/container_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <com.example.algol.TextViewHelvetica
+            android:id="@+id/number_elements"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            foo:customFont="HelveticaLight.ttf"
+            android:textSize="@dimen/analyses_text_view"
+            android:text="@string/number_elements" />
+
+        <SeekBar
+            android:id="@+id/seekbar_number_elements"
+            android:layout_marginTop="@dimen/analyses_margin_elements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/number_elements"/>
+
+        <com.example.algol.TextViewHelvetica
+            android:id="@+id/maximum_element"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            foo:customFont="HelveticaLight.ttf"
+            android:textSize="@dimen/analyses_text_view"
+            android:text="@string/maximum_element"
+            android:layout_below="@id/seekbar_number_elements"
+            android:layout_marginTop="@dimen/analyses_margin_elements"/>
+
+        <SeekBar
+            android:id="@+id/seekbar_maximum_element"
+            android:layout_marginTop="@dimen/analyses_margin_elements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/maximum_element"/>
+
+        <com.example.algol.TextViewHelvetica
+            android:id="@+id/is_sorted"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            foo:customFont="HelveticaLight.ttf"
+            android:textSize="@dimen/analyses_text_view"
+            android:layout_below="@id/seekbar_maximum_element"
+            android:text="@string/is_sorted" />
+
+        <ToggleButton
+            android:id="@+id/toggle_is_sorted"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/toggle_switch"
+            android:layout_below="@id/seekbar_number_elements"
+            android:layout_alignTop="@id/is_sorted"
+            android:textOff=""
+            android:textOn="" />
+
+        <com.example.algol.TextViewHelvetica
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:textColor="@color/black"
+            android:textSize="@dimen/analyses_time"
+            android:layout_marginBottom="20dp"
+            foo:customFont="HelveticaLight.ttf"
+            android:layout_above="@+id/start_button"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/start_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/aquamarine"
+            android:textColor="@color/white"
+            android:text="@string/start_button" />
+
+    </RelativeLayout>
 
 </FrameLayout>

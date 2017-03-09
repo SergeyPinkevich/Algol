@@ -1,6 +1,7 @@
 package com.example.algol;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
@@ -19,6 +20,7 @@ public class DescriptionFragment extends Fragment {
 
     private JustifiedTextView mTextDescription;
     private TextView mTitleDescription;
+    private Context mContext;
 
     public DescriptionFragment() {
         // Required empty public constructor

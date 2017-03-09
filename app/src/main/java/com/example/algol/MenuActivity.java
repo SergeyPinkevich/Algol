@@ -46,10 +46,11 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void setUserEmail() {
-        mAuth = FirebaseAuth.getInstance();
-        mUserEmail = mAuth.getCurrentUser().getDisplayName();
+//        mAuth = FirebaseAuth.getInstance();
+//        mUserEmail = mAuth.getCurrentUser().getDisplayName();
         mUserEmailText = (TextView)mNavigationView.findViewById(R.id.login_text);
-        mUserEmailText.setText(mUserEmail);
+        mUserEmailText.setText("sergeipinkevich163@gmail.com");
+//        mUserEmailText.setText(mUserEmail);
     }
 
     @Override
