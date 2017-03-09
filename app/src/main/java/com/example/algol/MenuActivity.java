@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.algol.auth.LoginActivity;
@@ -46,11 +47,11 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     private void setUserEmail() {
-//        mAuth = FirebaseAuth.getInstance();
-//        mUserEmail = mAuth.getCurrentUser().getDisplayName();
-        mUserEmailText = (TextView)mNavigationView.findViewById(R.id.login_text);
-        mUserEmailText.setText("sergeipinkevich163@gmail.com");
-//        mUserEmailText.setText(mUserEmail);
+        mAuth = FirebaseAuth.getInstance();
+        mUserEmail = mAuth.getCurrentUser().getEmail();
+        View headerView = mNavigationView.getHeaderView(0);
+        mUserEmailText = (TextView)headerView.findViewById(R.id.login_text);
+        mUserEmailText.setText(mUserEmail);
     }
 
     @Override
