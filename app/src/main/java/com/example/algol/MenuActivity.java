@@ -41,7 +41,7 @@ public class MenuActivity extends AppCompatActivity {
 
         setupNavigationView();
 
-        setUserEmail();
+//        setUserEmail();
 
         setNewFragment(new HomeFragment());
     }
