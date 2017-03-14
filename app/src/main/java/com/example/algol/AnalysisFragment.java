@@ -36,6 +36,8 @@ public class AnalysisFragment extends Fragment {
     private TextViewHelvetica mNumberElementsText;
     private TextViewHelvetica mMaximumElementText;
 
+    private Algorithm mAlgorithm;
+
     private int algorithmId;
 
     public AnalysisFragment() {
@@ -68,11 +70,10 @@ public class AnalysisFragment extends Fragment {
         });
     }
 
-    public String getAlgorithmComplexity() {
+    private void initializeAlgorithm() {
         algorithmId = getArguments().getInt(AlgorithmDetailsActivity.ALGORITHM_ID);
         AlgorithmRepo repo = new AlgorithmRepo(getActivity());
-        Algorithm algorithm = repo.getAlgorithmById(algorithmId);
-        return algorithm.getComplexity();
+        mAlgorithm = repo.getAlgorithmById(algorithmId);
     }
 
     @Override
@@ -80,6 +81,7 @@ public class AnalysisFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_analysis, container, false);
 
+        initializeAlgorithm();
         initializeTextViews(view);
         initializeSeekbars(view);
         final int numberElements = mNumberElementsBar.getProgress();
@@ -98,7 +100,7 @@ public class AnalysisFragment extends Fragment {
 
     public void initializeTextViews(View view) {
         mComplexityText = (TextViewHelvetica) view.findViewById(R.id.complexity);
-        mComplexityText.setText(Html.fromHtml(getAlgorithmComplexity()));
+        mComplexityText.setText(Html.fromHtml(mAlgorithm.getComplexity()));
         mNumberElementsText = (TextViewHelvetica) view.findViewById(R.id.number_elements);
         mMaximumElementText = (TextViewHelvetica) view.findViewById(R.id.maximum_element);
     }
