@@ -49,7 +49,7 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
                     + MainMenuTable.Cols.NAME + " TEXT, "
                     + MainMenuTable.Cols.CATEGORY + " TEXT, "
                     + MainMenuTable.Cols.DESCRIPTION + " TEXT, "
-                    + MainMenuTable.Cols.COMPLEXITY + " TEXT;");
+                    + MainMenuTable.Cols.COMPLEXITY + " TEXT);");
 
             addAlgorithms(db);
         }

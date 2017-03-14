@@ -71,7 +71,7 @@ public class AlgorithmRepo {
         contentValues.put(Cols.NAME, algorithm.getName());
         contentValues.put(Cols.CATEGORY, algorithm.getCategory());
         contentValues.put(Cols.DESCRIPTION, algorithm.getDescription());
-        contentValues.put(Cols.COMPLEXITY, algorithm.getDescription());
+        contentValues.put(Cols.COMPLEXITY, algorithm.getComplexity());
         return contentValues;
     }
 }

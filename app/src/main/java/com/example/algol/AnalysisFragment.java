@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.example.algol.database.AlgorithmRepo;
 import com.example.algol.retrofit.AlgolRestApi;
 
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,8 +31,8 @@ public class AnalysisFragment extends Fragment {
     private static AlgolRestApi sRestApi;
     private Retrofit mRetrofit;
 
-    private SeekBar mNumberElementsBar;
-    private SeekBar mMaximumElementBar;
+    private DiscreteSeekBar mNumberElementsBar;
+    private DiscreteSeekBar mMaximumElementBar;
 
     private TextViewHelvetica mComplexityText;
     private TextViewHelvetica mNumberElementsText;
@@ -51,7 +53,7 @@ public class AnalysisFragment extends Fragment {
 
     public void APIRequest(int numberElements, int maximumElement) {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl("http://http://8b95a086.ngrok.io/")
+                .baseUrl("http://e5b8f2e7.ngrok.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         sRestApi = mRetrofit.create(AlgolRestApi.class);
@@ -84,13 +86,13 @@ public class AnalysisFragment extends Fragment {
         initializeAlgorithm();
         initializeTextViews(view);
         initializeSeekbars(view);
-        final int numberElements = mNumberElementsBar.getProgress();
-        final int maximumElement = mMaximumElementBar.getProgress();
 
         Button button = (Button) view.findViewById(R.id.start_button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final int numberElements = mNumberElementsBar.getProgress();
+                final int maximumElement = mMaximumElementBar.getProgress();
                 APIRequest(numberElements, maximumElement);
             }
         });
@@ -106,42 +108,12 @@ public class AnalysisFragment extends Fragment {
     }
 
     public void initializeSeekbars(View view) {
-        mNumberElementsBar = (SeekBar) view.findViewById(R.id.seekbar_number_elements);
+        mNumberElementsBar = (DiscreteSeekBar) view.findViewById(R.id.seekbar_number_elements);
         mNumberElementsBar.setMax(1000);
-        mNumberElementsBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mNumberElementsText.setText(progress);
-            }
+        mNumberElementsBar.setProgress(250);
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        mMaximumElementBar = (SeekBar) view.findViewById(R.id.seekbar_maximum_element);
+        mMaximumElementBar = (DiscreteSeekBar) view.findViewById(R.id.seekbar_maximum_element);
         mMaximumElementBar.setMax(1000);
-        mMaximumElementBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mMaximumElementText.setText(progress);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
+        mMaximumElementBar.setProgress(750);
     }
 }

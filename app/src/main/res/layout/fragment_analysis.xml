@@ -6,6 +6,7 @@
              android:paddingBottom="16dp"
              android:paddingLeft="16dp"
              android:paddingRight="16dp"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              xmlns:foo="http://schemas.android.com/apk/res-auto"
              android:background="@color/white"
              tools:context="com.example.algol.AnalysisFragment">
@@ -35,11 +36,14 @@
             android:textSize="@dimen/analyses_text_view"
             android:text="@string/number_elements" />
 
-        <SeekBar
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
             android:id="@+id/seekbar_number_elements"
             android:layout_marginTop="@dimen/analyses_margin_elements"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:dsb_min="1"
+            app:dsb_max="1000"
+            app:dsb_value="250"
             android:layout_below="@id/number_elements"/>
 
         <com.example.algol.TextViewHelvetica
@@ -52,11 +56,14 @@
             android:layout_below="@id/seekbar_number_elements"
             android:layout_marginTop="@dimen/analyses_margin_elements"/>
 
-        <SeekBar
+        <org.adw.library.widgets.discreteseekbar.DiscreteSeekBar
             android:id="@+id/seekbar_maximum_element"
             android:layout_marginTop="@dimen/analyses_margin_elements"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:dsb_min="1"
+            app:dsb_max="1000"
+            app:dsb_value="750"
             android:layout_below="@id/maximum_element"/>
 
         <com.example.algol.TextViewHelvetica
