@@ -12,12 +12,14 @@ public class Algorithm {
     private String name;
     private String category;
     private String description;
+    private String complexity;
 
-    public Algorithm(int id, String name, String category, String description) {
+    public Algorithm(int id, String name, String category, String description, String complexity) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.description = description;
+        this.complexity = complexity;
     }
 
     public String getDescription() {
@@ -50,5 +52,14 @@ public class Algorithm {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+
+    public String getComplexity() {
+        return complexity;
+    }
+
+    public void setComplexity(String complexity) {
+        this.complexity = complexity;
     }
 }

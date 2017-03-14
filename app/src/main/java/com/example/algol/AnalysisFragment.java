@@ -33,6 +33,8 @@ public class AnalysisFragment extends Fragment {
     private TextViewHelvetica mNumberElementsText;
     private TextViewHelvetica mMaximumElementText;
 
+    private int algorithmId;
+
     public AnalysisFragment() {
         // Required empty public constructor
     }
@@ -61,6 +63,10 @@ public class AnalysisFragment extends Fragment {
                 Toast.makeText(getActivity(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void getAlgorithmId() {
+        algorithmId = getArguments().getInt(AlgorithmDetailsActivity.ALGORITHM_ID);
     }
 
     @Override

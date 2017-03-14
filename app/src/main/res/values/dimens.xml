@@ -17,4 +17,5 @@
     <dimen name="analyses_margin_elements">10dp</dimen>
     <dimen name="analyses_text_view">20sp</dimen>
     <dimen name="analyses_time">38sp</dimen>
+    <dimen name="analyses_complexity">38sp</dimen>
 </resources>

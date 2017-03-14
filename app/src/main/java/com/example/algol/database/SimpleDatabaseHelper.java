@@ -48,7 +48,8 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
                     + MainMenuTable.Cols.ID + " INTEGER, "
                     + MainMenuTable.Cols.NAME + " TEXT, "
                     + MainMenuTable.Cols.CATEGORY + " TEXT, "
-                    + MainMenuTable.Cols.DESCRIPTION + " TEXT);");
+                    + MainMenuTable.Cols.DESCRIPTION + " TEXT, "
+                    + MainMenuTable.Cols.COMPLEXITY + " TEXT;");
 
             addAlgorithms(db);
         }
@@ -56,8 +57,8 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
 
     public void addAlgorithms(SQLiteDatabase db) {
         AlgorithmRepo algorithmRepo = new AlgorithmRepo(mContext);
-        algorithmRepo.addAlgorithm(db, new Algorithm(0, "Bubble Sort", "Sorting", mContext.getString(R.string.bubble_sort_description)));
-        algorithmRepo.addAlgorithm(db, new Algorithm(1, "Selection Sort", "Sorting", mContext.getString(R.string.selection_sort_description)));
-        algorithmRepo.addAlgorithm(db, new Algorithm(2, "Insertion Sort", "Sorting", mContext.getString(R.string.insertion_sort_description)));
+        algorithmRepo.addAlgorithm(db, new Algorithm(0, "Bubble Sort", "Sorting", mContext.getString(R.string.bubble_sort_description), "O(n<sup>2</sup>)"));
+        algorithmRepo.addAlgorithm(db, new Algorithm(1, "Selection Sort", "Sorting", mContext.getString(R.string.selection_sort_description), "O(n<sup>2</sup>)"));
+        algorithmRepo.addAlgorithm(db, new Algorithm(2, "Insertion Sort", "Sorting", mContext.getString(R.string.insertion_sort_description), "O(n<sup>2</sup>)"));
     }
 }

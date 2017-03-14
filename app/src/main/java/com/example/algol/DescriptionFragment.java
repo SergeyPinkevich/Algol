@@ -20,7 +20,6 @@ public class DescriptionFragment extends Fragment {
 
     private JustifiedTextView mTextDescription;
     private TextView mTitleDescription;
-    private Context mContext;
 
     public DescriptionFragment() {
         // Required empty public constructor

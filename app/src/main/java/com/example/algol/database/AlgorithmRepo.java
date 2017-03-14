@@ -43,7 +43,8 @@ public class AlgorithmRepo {
         Algorithm algorithm = new Algorithm(cursor.getInt(cursor.getColumnIndex(AlgolDbSchema.MainMenuTable.Cols.ID)),
                 cursor.getString(cursor.getColumnIndex(Cols.NAME)),
                 cursor.getString(cursor.getColumnIndex(Cols.CATEGORY)),
-                cursor.getString(cursor.getColumnIndex(Cols.DESCRIPTION)));
+                cursor.getString(cursor.getColumnIndex(Cols.DESCRIPTION)),
+                cursor.getString(cursor.getColumnIndex(Cols.COMPLEXITY)));
         return algorithm;
     }
 
@@ -70,6 +71,7 @@ public class AlgorithmRepo {
         contentValues.put(Cols.NAME, algorithm.getName());
         contentValues.put(Cols.CATEGORY, algorithm.getCategory());
         contentValues.put(Cols.DESCRIPTION, algorithm.getDescription());
+        contentValues.put(Cols.COMPLEXITY, algorithm.getDescription());
         return contentValues;
     }
 }

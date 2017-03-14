@@ -28,6 +28,7 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
     private Algorithm algorithm;
 
     private DescriptionFragment mDescriptionFragment;
+    private AnalysisFragment mAnalysisFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addDescriptionFragment();
         adapter.addFragment(new InteractionFragment(), "INTERACTION");
-        adapter.addFragment(new AnalysisFragment(), "ANALYSIS");
+        adapter.addAnalysisFragment();
         viewPager.setAdapter(adapter);
     }
 
@@ -87,6 +88,16 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return mFragmentList.size();
+        }
+
+        public void addAnalysisFragment() {
+            Bundle bundle = new Bundle();
+            bundle.putInt(ALGORITHM_ID, algorithmId);
+
+            mAnalysisFragment = new AnalysisFragment();
+            mAnalysisFragment.setArguments(bundle);
+            mFragmentList.add(mAnalysisFragment);
+            mFragmentTitleList.add("ANALYSIS");
         }
 
         public void addDescriptionFragment() {
