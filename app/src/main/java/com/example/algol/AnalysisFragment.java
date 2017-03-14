@@ -3,6 +3,7 @@ package com.example.algol;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.example.algol.database.AlgorithmRepo;
 import com.example.algol.retrofit.AlgolRestApi;
 
 import retrofit2.Call;
@@ -30,6 +32,7 @@ public class AnalysisFragment extends Fragment {
     private SeekBar mNumberElementsBar;
     private SeekBar mMaximumElementBar;
 
+    private TextViewHelvetica mComplexityText;
     private TextViewHelvetica mNumberElementsText;
     private TextViewHelvetica mMaximumElementText;
 
@@ -65,8 +68,11 @@ public class AnalysisFragment extends Fragment {
         });
     }
 
-    public void getAlgorithmId() {
+    public String getAlgorithmComplexity() {
         algorithmId = getArguments().getInt(AlgorithmDetailsActivity.ALGORITHM_ID);
+        AlgorithmRepo repo = new AlgorithmRepo(getActivity());
+        Algorithm algorithm = repo.getAlgorithmById(algorithmId);
+        return algorithm.getComplexity();
     }
 
     @Override
@@ -91,6 +97,8 @@ public class AnalysisFragment extends Fragment {
     }
 
     public void initializeTextViews(View view) {
+        mComplexityText = (TextViewHelvetica) view.findViewById(R.id.complexity);
+        mComplexityText.setText(Html.fromHtml(getAlgorithmComplexity()));
         mNumberElementsText = (TextViewHelvetica) view.findViewById(R.id.number_elements);
         mMaximumElementText = (TextViewHelvetica) view.findViewById(R.id.maximum_element);
     }
