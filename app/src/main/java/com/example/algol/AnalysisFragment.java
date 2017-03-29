@@ -1,9 +1,11 @@
 package com.example.algol;
 
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +16,10 @@ import com.example.algol.database.AlgorithmRepo;
 import com.example.algol.retrofit.AlgolRestApi;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
+import org.w3c.dom.Text;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,9 +39,11 @@ public class AnalysisFragment extends Fragment {
     private DiscreteSeekBar mNumberElementsBar;
     private DiscreteSeekBar mMaximumElementBar;
 
+    private Button mStart;
     private TextViewHelvetica mComplexityText;
     private TextViewHelvetica mNumberElementsText;
     private TextViewHelvetica mMaximumElementText;
+    private TextViewHelvetica mTime;
 
     private Algorithm mAlgorithm;
 
@@ -52,21 +60,27 @@ public class AnalysisFragment extends Fragment {
 
     public void APIRequest(int numberElements, int maximumElement) {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl("http://f90cd460.ngrok.io/")
+                .baseUrl("http://a9fa3249.ngrok.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         sRestApi = mRetrofit.create(AlgolRestApi.class);
 
         sRestApi.bubbleSort(numberElements, maximumElement).enqueue(new Callback<Double>() {
+            Drawable drawable = getResources().getDrawable(R.color.aquamarine);
+
             @Override
             public void onResponse(Call<Double> call, Response<Double> response) {
                 Double val = response.body();
-                Toast.makeText(getActivity(), String.valueOf(val), Toast.LENGTH_SHORT).show();
+                mTime.setText(getResources().getString(R.string.time) + " " + getTimeFormat(val.longValue()));
+                mStart.setEnabled(false);
+                mStart.setBackground(drawable);
             }
 
             @Override
             public void onFailure(Call<Double> call, Throwable t) {
-                Toast.makeText(getActivity(), "An error occurred during networking", Toast.LENGTH_SHORT).show();
+                mStart.setEnabled(false);
+                mStart.setBackground(drawable);
+                Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -86,13 +100,18 @@ public class AnalysisFragment extends Fragment {
         initializeTextViews(view);
         initializeSeekbars(view);
 
-        Button button = (Button) view.findViewById(R.id.start_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        mTime = (TextViewHelvetica) view.findViewById(R.id.time);
+
+        mStart = (Button) view.findViewById(R.id.start_button);
+        mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final int numberElements = mNumberElementsBar.getProgress();
                 final int maximumElement = mMaximumElementBar.getProgress();
                 APIRequest(numberElements, maximumElement);
+                mStart.setEnabled(false);
+                Drawable drawable = getResources().getDrawable(R.color.lightGray);
+                mStart.setBackground(drawable);
             }
         });
 
@@ -108,11 +127,17 @@ public class AnalysisFragment extends Fragment {
 
     public void initializeSeekbars(View view) {
         mNumberElementsBar = (DiscreteSeekBar) view.findViewById(R.id.seekbar_number_elements);
-        mNumberElementsBar.setMax(1000);
-        mNumberElementsBar.setProgress(250);
+        mNumberElementsBar.setMax(10000);
+        mNumberElementsBar.setProgress(1150);
 
         mMaximumElementBar = (DiscreteSeekBar) view.findViewById(R.id.seekbar_maximum_element);
-        mMaximumElementBar.setMax(1000);
+        mMaximumElementBar.setMax(10000);
         mMaximumElementBar.setProgress(750);
+    }
+
+    public String getTimeFormat(long milliseconds) {
+        Date date = new Date(milliseconds);
+        SimpleDateFormat format = new SimpleDateFormat("mm:ss:SSS");
+        return format.format(date);
     }
 }

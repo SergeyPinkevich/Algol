@@ -110,13 +110,15 @@
             android:background="@drawable/toggle_switch"
             android:layout_below="@id/seekbar_number_elements"
             android:layout_alignTop="@id/is_sorted"
+            android:shadowRadius="0"
             android:textOff=""
             android:textOn="" />
 
         <com.example.algol.TextViewHelvetica
+            android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/time"
+            android:text="Time 00:00:000"
             android:textColor="@color/black"
             android:textSize="@dimen/analyses_time"
             android:layout_marginBottom="20dp"
