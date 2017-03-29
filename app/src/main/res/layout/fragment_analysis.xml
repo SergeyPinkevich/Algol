@@ -17,22 +17,48 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.algol.TextViewHelvetica
-            android:id="@+id/complexity"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            foo:customFont="HelveticaLight.ttf"
-            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal"
             android:layout_marginBottom="40dp"
-            android:textSize="@dimen/analyses_complexity"
-            android:text="O(n^2)" />
+            android:orientation="horizontal">
+
+            <com.example.algol.TextViewHelvetica
+                android:id="@+id/complexity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                foo:customFont="HelveticaLight.ttf"
+                android:textSize="@dimen/analyses_complexity"
+                android:text="O(n" />
+
+            <com.example.algol.TextViewHelvetica
+                android:id="@+id/complexity_pow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                foo:customFont="HelveticaLight.ttf"
+                android:layout_marginTop="-15dp"
+                android:text="2"
+                android:layout_toRightOf="@id/complexity"
+                android:textSize="@dimen/analyses_pow"/>
+
+            <com.example.algol.TextViewHelvetica
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                foo:customFont="HelveticaLight.ttf"
+                android:layout_toRightOf="@id/complexity_pow"
+                android:textSize="@dimen/analyses_complexity"
+                android:text=")" />
+
+        </LinearLayout>
 
         <com.example.algol.TextViewHelvetica
             android:id="@+id/number_elements"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             foo:customFont="HelveticaLight.ttf"
-            android:layout_below="@id/complexity"
+            android:layout_below="@id/linear_layout"
             android:textSize="@dimen/analyses_text_view"
             android:text="@string/number_elements" />
 

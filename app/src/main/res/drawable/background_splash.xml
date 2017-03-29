@@ -4,9 +4,9 @@
     <item
         android:drawable="@drawable/splash_bg" />
 
-    <item>
-        <bitmap
+    <item
+            android:width="200dp"
+            android:height="200dp"
             android:gravity="center"
-            android:src="@drawable/icon" />
-    </item>
+            android:drawable="@drawable/icon" />
 </layer-list>
