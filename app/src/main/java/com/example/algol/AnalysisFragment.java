@@ -40,8 +40,6 @@ public class AnalysisFragment extends Fragment {
     private Button mStart;
     private TextViewHelvetica mComplexityText;
     private TextViewHelvetica mComplexityPow;
-    private TextViewHelvetica mNumberElementsText;
-    private TextViewHelvetica mMaximumElementText;
     private TextViewHelvetica mTime;
 
     private Algorithm mAlgorithm;
@@ -120,13 +118,17 @@ public class AnalysisFragment extends Fragment {
     public void initializeTextViews(View view) {
         mComplexityText = (TextViewHelvetica) view.findViewById(R.id.complexity);
         String complexity = mAlgorithm.getComplexity();
-        mComplexityText.setText(complexity.split("_")[0]);
+        if (complexity.split("_")[0] != null)
+            mComplexityText.setText(complexity.split("_")[0]);
+        else
+            mComplexityText.setText(complexity);
 
         mComplexityPow = (TextViewHelvetica) view.findViewById(R.id.complexity_pow);
-        mComplexityPow.setText(complexity.split("_")[1]);
-
-        mNumberElementsText = (TextViewHelvetica) view.findViewById(R.id.number_elements);
-        mMaximumElementText = (TextViewHelvetica) view.findViewById(R.id.maximum_element);
+        try {
+            mComplexityPow.setText(complexity.split("_")[1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            e.printStackTrace();
+        }
     }
 
     public void initializeSeekbars(View view) {

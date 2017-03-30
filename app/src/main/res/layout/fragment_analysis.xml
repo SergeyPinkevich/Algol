@@ -2,12 +2,10 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             android:paddingTop="16dp"
-             android:paddingBottom="16dp"
-             android:paddingLeft="16dp"
-             android:paddingRight="16dp"
              xmlns:app="http://schemas.android.com/apk/res-auto"
              xmlns:foo="http://schemas.android.com/apk/res-auto"
+             android:paddingLeft="16dp"
+             android:paddingRight="16dp"
              android:background="@color/white"
              tools:context="com.example.algol.AnalysisFragment">
 
@@ -37,8 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 foo:customFont="HelveticaLight.ttf"
-                android:textSize="@dimen/analyses_complexity"
-                android:text="n" />
+                android:textSize="@dimen/analyses_complexity" />
 
             <com.example.algol.TextViewHelvetica
                 android:id="@+id/complexity_pow"
@@ -46,7 +43,6 @@
                 android:layout_height="wrap_content"
                 foo:customFont="HelveticaLight.ttf"
                 android:layout_marginTop="-15dp"
-                android:text="2"
                 android:layout_toRightOf="@id/complexity"
                 android:textSize="@dimen/analyses_pow"/>
 
@@ -113,11 +109,35 @@
             android:id="@+id/toggle_is_sorted"
             android:layout_width="60dp"
             android:layout_height="30dp"
+            android:layout_marginTop="-7dp"
             android:layout_alignParentEnd="true"
             android:background="@drawable/toggle_switch"
-            android:layout_below="@id/seekbar_number_elements"
             android:layout_alignTop="@id/is_sorted"
             android:shadowRadius="0"
+            android:shadowColor="@color/white"
+            android:textOff=""
+            android:textOn="" />
+
+        <com.example.algol.TextViewHelvetica
+            android:id="@+id/reverse_order"
+            android:layout_marginTop="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            foo:customFont="HelveticaLight.ttf"
+            android:textSize="@dimen/analyses_text_view"
+            android:layout_below="@id/is_sorted"
+            android:text="@string/is_sorted" />
+
+        <ToggleButton
+            android:id="@+id/toggle_reverse_order"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="-7dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/toggle_switch"
+            android:layout_alignTop="@id/reverse_order"
+            android:shadowRadius="0"
+            android:shadowColor="@color/white"
             android:textOff=""
             android:textOn="" />
 
