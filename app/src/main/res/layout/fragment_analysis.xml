@@ -12,7 +12,7 @@
              tools:context="com.example.algol.AnalysisFragment">
 
     <RelativeLayout
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:id="@+id/container_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -22,8 +22,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
+
+            <com.example.algol.TextViewHelvetica
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                foo:customFont="HelveticaLight.ttf"
+                android:textSize="@dimen/analyses_complexity"
+                android:text="O(" />
 
             <com.example.algol.TextViewHelvetica
                 android:id="@+id/complexity"
@@ -31,7 +38,7 @@
                 android:layout_height="wrap_content"
                 foo:customFont="HelveticaLight.ttf"
                 android:textSize="@dimen/analyses_complexity"
-                android:text="O(n" />
+                android:text="n" />
 
             <com.example.algol.TextViewHelvetica
                 android:id="@+id/complexity_pow"

@@ -5,7 +5,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Html;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import com.example.algol.database.AlgorithmRepo;
 import com.example.algol.retrofit.AlgolRestApi;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +39,7 @@ public class AnalysisFragment extends Fragment {
 
     private Button mStart;
     private TextViewHelvetica mComplexityText;
+    private TextViewHelvetica mComplexityPow;
     private TextViewHelvetica mNumberElementsText;
     private TextViewHelvetica mMaximumElementText;
     private TextViewHelvetica mTime;
@@ -120,7 +119,12 @@ public class AnalysisFragment extends Fragment {
 
     public void initializeTextViews(View view) {
         mComplexityText = (TextViewHelvetica) view.findViewById(R.id.complexity);
-        mComplexityText.setText(Html.fromHtml(mAlgorithm.getComplexity()));
+        String complexity = mAlgorithm.getComplexity();
+        mComplexityText.setText(complexity.split("_")[0]);
+
+        mComplexityPow = (TextViewHelvetica) view.findViewById(R.id.complexity_pow);
+        mComplexityPow.setText(complexity.split("_")[1]);
+
         mNumberElementsText = (TextViewHelvetica) view.findViewById(R.id.number_elements);
         mMaximumElementText = (TextViewHelvetica) view.findViewById(R.id.maximum_element);
     }
