@@ -126,7 +126,7 @@
             foo:customFont="HelveticaLight.ttf"
             android:textSize="@dimen/analyses_text_view"
             android:layout_below="@id/is_sorted"
-            android:text="@string/is_sorted" />
+            android:text="@string/reverse_order" />
 
         <ToggleButton
             android:id="@+id/toggle_reverse_order"

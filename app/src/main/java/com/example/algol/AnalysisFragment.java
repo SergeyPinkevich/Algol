@@ -4,12 +4,12 @@ package com.example.algol;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.algol.database.AlgorithmRepo;
 import com.example.algol.retrofit.AlgolRestApi;
@@ -41,6 +41,8 @@ public class AnalysisFragment extends Fragment {
     private TextViewHelvetica mComplexityText;
     private TextViewHelvetica mComplexityPow;
     private TextViewHelvetica mTime;
+    private ToggleButton mSortedToggle;
+    private ToggleButton mReverseToggle;
 
     private Algorithm mAlgorithm;
 
@@ -55,14 +57,14 @@ public class AnalysisFragment extends Fragment {
         super.onCreate(savedInstance);
     }
 
-    public void APIRequest(int numberElements, int maximumElement) {
+    public void APIRequest(int numberElements, int maximumElement, boolean isSorted, boolean reverseOrder) {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl("http://a9fa3249.ngrok.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         sRestApi = mRetrofit.create(AlgolRestApi.class);
 
-        sRestApi.bubbleSort(numberElements, maximumElement).enqueue(new Callback<Double>() {
+        sRestApi.bubbleSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(new Callback<Double>() {
             Drawable drawable = getResources().getDrawable(R.color.aquamarine);
 
             @Override
@@ -96,6 +98,7 @@ public class AnalysisFragment extends Fragment {
         initializeAlgorithm();
         initializeTextViews(view);
         initializeSeekbars(view);
+        initializeToggles(view);
 
         mTime = (TextViewHelvetica) view.findViewById(R.id.time);
 
@@ -103,9 +106,8 @@ public class AnalysisFragment extends Fragment {
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final int numberElements = mNumberElementsBar.getProgress();
-                final int maximumElement = mMaximumElementBar.getProgress();
-                APIRequest(numberElements, maximumElement);
+                APIRequest(mNumberElementsBar.getProgress(), mMaximumElementBar.getProgress(), mSortedToggle.isChecked(), mReverseToggle.isChecked());
+
                 mStart.setEnabled(false);
                 Drawable drawable = getResources().getDrawable(R.color.lightGray);
                 mStart.setBackground(drawable);
@@ -113,6 +115,25 @@ public class AnalysisFragment extends Fragment {
         });
 
         return view;
+    }
+
+    public void initializeToggles(View view) {
+        mSortedToggle = (ToggleButton) view.findViewById(R.id.toggle_is_sorted);
+        mSortedToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!mSortedToggle.isChecked())
+                    mReverseToggle.setChecked(false);
+            }
+        });
+        mReverseToggle = (ToggleButton) view.findViewById(R.id.toggle_reverse_order);
+        mReverseToggle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mReverseToggle.isChecked())
+                    mSortedToggle.setChecked(true);
+            }
+        });
     }
 
     public void initializeTextViews(View view) {

@@ -63,6 +63,7 @@
     <string name="maximum_element">Maximum element</string>
     <string name="disperse">Disperse</string>
     <string name="is_sorted">Already sorted</string>
+    <string name="reverse_order">Reverse order</string>
     <string name="time">Time</string>
     <string name="start_button">START</string>
     <string name="error">Connection error</string>

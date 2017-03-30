@@ -10,11 +10,11 @@ import retrofit2.http.Query;
 
 public interface AlgolRestApi {
     @GET("/algol/api/sorting/bubble")
-    Call<Double> bubbleSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement);
+    Call<Double> bubbleSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement, @Query("is_sorted") boolean isSorted, @Query("reverse_order") boolean reverseOrder);
 
     @GET("/algol/api/sorting/insertion")
-    Call<Double> insertionSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement);
+    Call<Double> insertionSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement, @Query("is_sorted") boolean isSorted, @Query("reverse_order") boolean reverseOrder);
 
     @GET("/algol/api/sorting/selection")
-    Call<Double> selectionSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement);
+    Call<Double> selectionSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement, @Query("is_sorted") boolean isSorted, @Query("reverse_order") boolean reverseOrder);
 }
