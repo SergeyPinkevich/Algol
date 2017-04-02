@@ -44,6 +44,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
+        setHasOptionsMenu(true);
     }
 
     @Override
