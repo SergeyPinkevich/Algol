@@ -9,9 +9,9 @@ import android.view.View;
  * Created by Сергей Пинкевич on 02.04.2017.
  */
 
-public abstract class AlgorithmVisualizer extends View {
+public abstract class BaseVisualizer extends View {
 
-    public AlgorithmVisualizer(Context context) {
+    public BaseVisualizer(Context context) {
         super(context);
     }
 
@@ -24,31 +24,29 @@ public abstract class AlgorithmVisualizer extends View {
     public int getDimensionInPixel(int dp) {
         int density = getResources().getDisplayMetrics().densityDpi;
 
-        int modifieddp = dp;
+        int modifiedDP = dp;
         switch (density) {
             case DisplayMetrics.DENSITY_LOW:
-                modifieddp = dp - dp / 2;
+                modifiedDP = dp - dp / 2;
                 break;
             case DisplayMetrics.DENSITY_MEDIUM:
-                modifieddp = dp - dp / 3;
+                modifiedDP = dp - dp / 3;
                 break;
             case DisplayMetrics.DENSITY_HIGH:
-                modifieddp = dp - dp / 4;
+                modifiedDP = dp - dp / 4;
                 break;
             case DisplayMetrics.DENSITY_XHIGH:
             case DisplayMetrics.DENSITY_XXHIGH:
             case DisplayMetrics.DENSITY_XXXHIGH:
-                modifieddp = dp;
+                modifiedDP = dp;
                 break;
             default:
                 break;
         }
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, modifieddp, getResources().getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, modifiedDP, getResources().getDisplayMetrics());
     }
 
     public int getDimensionInPixelFromSP(int sp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, getResources().getDisplayMetrics());
     }
-
-    public abstract void onCompleted();
 }

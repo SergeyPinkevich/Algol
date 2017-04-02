@@ -10,7 +10,7 @@ import android.text.TextPaint;
  * Created by Сергей Пинкевич on 02.04.2017.
  */
 
-public class SortingVisualizer extends AlgorithmVisualizer {
+public class SortingVisualizer extends BaseVisualizer {
 
     private Paint mPaint;
     private Paint mHighlightsForSwap;
@@ -18,9 +18,10 @@ public class SortingVisualizer extends AlgorithmVisualizer {
     private Paint mTextPaint;
     private int[] array;
 
-    int highlightPositionOne = -1, highlightPositionTwo = -1;
-    int highlightPosition = -1;
-    int lineStrokeWidth = getDimensionInPixel(10);
+    private int highlightPositionFirst = -1;
+    private int highlightPositionSecond = -1;
+    private int highlightPosition = -1;
+    private int lineStrokeWidth = getDimensionInPixel(10);
 
     public SortingVisualizer(Context context) {
         super(context);
@@ -61,7 +62,7 @@ public class SortingVisualizer extends AlgorithmVisualizer {
             float xPos = margin + getDimensionInPixel(10);
             for (int i = 0; i < array.length; i++) {
 
-                if (i == highlightPositionOne || i == highlightPositionTwo) {
+                if (i == highlightPositionFirst || i == highlightPositionSecond) {
                     canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), mHighlightsForSwap);
                 } else if (i == highlightPosition)
                     canvas.drawLine(xPos, getHeight() - (float) ((array[i] / 10.0) * getHeight()), xPos, getHeight(), mHighlightsForTrace);
@@ -73,8 +74,8 @@ public class SortingVisualizer extends AlgorithmVisualizer {
 
                 xPos += margin + 30;
             }
-            highlightPositionOne = -1;
-            highlightPositionTwo = -1;
+            highlightPositionFirst = -1;
+            highlightPositionSecond = -1;
         }
     }
 
@@ -89,8 +90,8 @@ public class SortingVisualizer extends AlgorithmVisualizer {
     }
 
     public void highlightSwap(int one, int two) {
-        this.highlightPositionOne = one;
-        this.highlightPositionTwo = two;
+        this.highlightPositionFirst = one;
+        this.highlightPositionSecond = two;
         invalidate();
     }
 
@@ -99,11 +100,10 @@ public class SortingVisualizer extends AlgorithmVisualizer {
         invalidate();
     }
 
-    @Override
     public void onCompleted() {
         this.highlightPosition = -1;
-        this.highlightPositionTwo = -1;
-        this.highlightPositionOne = -1;
+        this.highlightPositionSecond = -1;
+        this.highlightPositionFirst = -1;
         invalidate();
     }
 }
