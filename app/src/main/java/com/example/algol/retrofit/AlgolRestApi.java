@@ -17,4 +17,7 @@ public interface AlgolRestApi {
 
     @GET("/algol/api/sorting/selection")
     Call<Double> selectionSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement, @Query("is_sorted") boolean isSorted, @Query("reverse_order") boolean reverseOrder);
+
+    @GET("/algol/api/sorting/quick")
+    Call<Double> quickSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement, @Query("is_sorted") boolean isSorted, @Query("reverse_order") boolean reverseOrder);
 }
