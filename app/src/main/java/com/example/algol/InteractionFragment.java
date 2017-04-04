@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.example.algol.visualizer.BaseVisualizer;
 import com.example.algol.visualizer.SortingVisualizer;
 
 
@@ -17,6 +18,7 @@ import com.example.algol.visualizer.SortingVisualizer;
 public class InteractionFragment extends Fragment {
 
     private FrameLayout mFrameLayout;
+    private int[] mArraySorting;
 
     public InteractionFragment() {
         // Required empty public constructor
@@ -34,14 +36,21 @@ public class InteractionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_interaction, container, false);
 
         mFrameLayout = (FrameLayout) view.findViewById(R.id.container_for_view);
-        int[] array = new int[10];
-        for (int i = 0; i < array.length; i++)
-            array[i] = (int) (Math.random() * 10);
-        SortingVisualizer visualizer = new SortingVisualizer(getActivity().getApplicationContext());
-        visualizer.setData(array);
-        mFrameLayout.addView(visualizer);
-
+        String category = getArguments().getString(AlgorithmDetailsActivity.CATEGORY);
+        switch (category) {
+            case "Sorting":
+                generateArrayForSorting();
+                SortingVisualizer visualizer = new SortingVisualizer(getActivity().getApplicationContext());
+                visualizer.setData(mArraySorting);
+                mFrameLayout.addView(visualizer);
+                break;
+        }
         return view;
     }
 
+    public void generateArrayForSorting() {
+        mArraySorting = new int[10];
+        for (int i = 0; i < mArraySorting.length; i++)
+            mArraySorting[i] = (int) (Math.random() * 10);
+    }
 }

@@ -22,12 +22,14 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
 
     public static final String DESCRIPTION = "description";
     public static final String NAME = "name";
+    public static final String CATEGORY = "category";
     public static final String ALGORITHM_ID = "algorithmId";
     private int algorithmId;
     private AlgorithmRepo mAlgorithmRepo;
     private Algorithm algorithm;
 
     private DescriptionFragment mDescriptionFragment;
+    private InteractionFragment mInteractionFragment;
     private AnalysisFragment mAnalysisFragment;
 
     @Override
@@ -61,7 +63,7 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addDescriptionFragment();
-        adapter.addFragment(new InteractionFragment(), "INTERACTION");
+        adapter.addInteractionFragment();
         adapter.addAnalysisFragment();
         viewPager.setAdapter(adapter);
     }
@@ -111,9 +113,14 @@ public class AlgorithmDetailsActivity extends AppCompatActivity {
             mFragmentTitleList.add("DESCRIPTION");
         }
 
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
+        public void addInteractionFragment() {
+            Bundle bundle = new Bundle();
+            bundle.putString(CATEGORY, algorithm.getCategory());
+
+            mInteractionFragment = new InteractionFragment();
+            mInteractionFragment.setArguments(bundle);
+            mFragmentList.add(mInteractionFragment);
+            mFragmentTitleList.add("INTERACTION");
         }
 
         @Override
