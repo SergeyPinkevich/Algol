@@ -64,24 +64,52 @@ public class AnalysisFragment extends Fragment {
                 .build();
         sRestApi = mRetrofit.create(AlgolRestApi.class);
 
-        sRestApi.bubbleSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(new Callback<Double>() {
-            Drawable drawable = getResources().getDrawable(R.color.aquamarine);
+        Callback<Double> callback = createCallbackForRetrofit();
 
+        String name = mAlgorithm.getName();
+        switch (name) {
+            case "Bubble sort":
+                sRestApi.bubbleSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+                break;
+            case "Selection sort":
+                sRestApi.selectionSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+                break;
+            case "Insertion sort":
+                sRestApi.insertionSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+                break;
+            case "Quick sort":
+                sRestApi.quickSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+                break;
+            case "Merge sort":
+                sRestApi.mergeSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+                break;
+            case "Shell sort":
+                sRestApi.shellSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+                break;
+        }
+    }
+
+    public Callback<Double> createCallbackForRetrofit() {
+        final Drawable drawable = getResources().getDrawable(R.color.aquamarine);
+        return new Callback<Double>() {
             @Override
             public void onResponse(Call<Double> call, Response<Double> response) {
                 Double val = response.body();
                 mTime.setText(getResources().getString(R.string.time) + " " + getTimeFormat(val.longValue()));
-                mStart.setEnabled(false);
-                mStart.setBackground(drawable);
+                setButtonNonActive(drawable);
             }
 
             @Override
             public void onFailure(Call<Double> call, Throwable t) {
-                mStart.setEnabled(false);
-                mStart.setBackground(drawable);
+                setButtonNonActive(drawable);
                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
             }
-        });
+        };
+    }
+
+    public void setButtonNonActive(final Drawable drawable) {
+        mStart.setEnabled(false);
+        mStart.setBackground(drawable);
     }
 
     private void initializeAlgorithm() {

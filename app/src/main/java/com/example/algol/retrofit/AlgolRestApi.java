@@ -20,4 +20,10 @@ public interface AlgolRestApi {
 
     @GET("/algol/api/sorting/quick")
     Call<Double> quickSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement, @Query("is_sorted") boolean isSorted, @Query("reverse_order") boolean reverseOrder);
+
+    @GET("/algol/api/sorting/merge")
+    Call<Double> mergeSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement, @Query("is_sorted") boolean isSorted, @Query("reverse_order") boolean reverseOrder);
+
+    @GET("/algol/api/sorting/shell")
+    Call<Double> shellSort(@Query("number_elements") int numberElements, @Query("maximum_element") int maximumElement, @Query("is_sorted") boolean isSorted, @Query("reverse_order") boolean reverseOrder);
 }
