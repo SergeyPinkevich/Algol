@@ -20,22 +20,60 @@
     <string name="nav_logout">Log out</string>
 
     <!-- Algorithms's description -->
-    <string name="bubble_sort_description">Bubble sort, sometimes referred to as sinking sort, is a simple sorting
-        algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps
-        them if they are in the wrong order. The pass through the list is repeated until no swaps are needed, which indicates
-        that the list is sorted. The algorithm, which is a comparison sort, is named for the way smaller or larger elements
-        "bubble" to the top of the list. Although the algorithm is simple, it is too slow and impractical for most problems
-        even when compared to insertion sort. It can be practical if the input is usually in sorted order but may occasionally
-        have some out-of-order elements nearly in position.</string>
-    <string name="insertion_sort_description">The algorithm that people often use to sort bridge hands is to consider the cards one at a time, inserting each into its proper place among those already
-        considered (keeping them sorted). In a computer implementation, we need to make
-        space to insert the current item by moving larger items one position to the right, before
-        inserting the current item into the vacated position. \n \nAs in selection sort, the items to the left of the current index are in sorted order during the sort, but they are not in their final position, as they may have to be moved to
-        make room for smaller items encountered later. The array is, however, fully sorted when
-        the index reaches the right end. \n \nUnlike that of selection sort, the running time of insertion sort depends on the initial order of the items in the input. For example, if the array is large and its entries are
-        already in order (or nearly in order), then insertion sort is much, much faster than if
-        the entries are randomly ordered or in reverse order.</string>
-    <string name="selection_sort_description">The algorithm works by selecting the smallest unsorted item and then swapping it with the item in the next position to be filled.\n \nThe selection sort works as follows: you look through the entire array for the smallest element, once you find it you swap it (the smallest element) with the first element of the array. Then you look for the smallest element in the remaining array (an array without the first element) and swap it with the second element. Then you look for the smallest element in the remaining array (an array without first and second elements) and swap it with the third element, and so on.</string>
+    <string name="bubble_sort_description">
+        Bubble sort is a sorting algorithm that works by repeatedly stepping through lists that need to be sorted, comparing each pair of adjacent items and swapping them if they are in the wrong order. This passing procedure is repeated until no swaps are required, indicating that the list is sorted. Bubble sort gets its name because smaller elements bubble toward the top of the list. \n \n
+        Bubble sort has a worst-case and average complexity of O(n2), where n is the number of items sorted. Unlike the other sorting algorithms, bubble sort detects whether the sorted list is efficiently built into the algorithm. Bubble sort performance over an already sorted list is O(n). \n \n
+        The position of elements in bubble sort plays an important role in determining performance. Large elements at the beginning do not pose a problem as they are easily swapped. The small elements toward the end move to the beginning slowly. As such, these elements are called rabbits and turtles. \n \n
+        The bubble sort algorithm can be optimized by placing larger elements in the final position. After every pass, all elements after the last swap are sorted and do not need to be checked again, thereby skipping the tracking of swapped variables.
+    </string>
+    <string name="insertion_sort_description">
+        Insertion sort is a sorting algorithm in which the elements are transferred one at a time to the right position. In other words, an insertion sort helps in building the final sorted list, one item at a time, with the movement of higher-ranked elements. An insertion sort has the benefits of simplicity and low overhead. \n \n
+        In an insertion sort, the first element in the array is considered as sorted, even if it is an unsorted array. In an insertion sort, each element in the array is checked with the previous elements, resulting in a growing sorted output list. With each iteration, the sorting algorithm removes one element at a time and finds the appropriate location within the sorted array and inserts it there. The iteration continues until the whole list is sorted. \n \n
+        There are many advantages associated with an insertion sort. It is simple to implement and is quite efficient for small sets of data, especially if it is substantially sorted. It has low overhead and can sort the list as it receives data. Another advantage associated with insertion sort is the fact that it needs only a constant amount of memory space for the whole operation. It is more efficient than other similar algorithms such as bubble sort or selection sort. \n \n
+        However, an insertion sort is less efficient on larger data sets and less efficient than the heap sort or quick sort algorithms.
+    </string>
+    <string name="selection_sort_description">
+        One of the simplest sorting algorithms works as follows: First, find
+        the smallest item in the array and exchange it with the first entry (itself if the first entry
+        is already the smallest). Then, find the next smallest item and exchange it with the second entry. Continue in this way until the entire array is sorted. This method is called
+        selection sort because it works by repeatedly selecting the smallest remaining item. \n \n
+        The inner loop of selection sort is just a compare to test a current item against the smallest item found so far
+        (plus the code necessary to increment the current index and to check that it does not
+        exceed the array bounds); it could hardly be simpler. The work of moving the items
+        around falls outside the inner loop: each exchange puts an item into its final position,
+        so the number of exchanges is N. Thus, the running time is dominated by the number
+        of compares.
+    </string>
+    <string name="quick_sort_description">
+        Quicksort is an algorithm used to quickly sort items within an array no matter how big the array is.
+        It is quite scalable and works relatively well for small and large data sets, and is easy to implement
+        with little time complexity. It does this through a divide-and-conquer method that divides a single large array
+        into two smaller ones and then repeats this process for all created arrays until the sort is complete. \n \n
+        The quicksort algorithm is performed as follows: \n \n
+        1. A pivot point is chosen from the array. \n \n
+        2. The array is reordered so that all values smaller than the pivot are moved before it and all values larger than the pivot are moved after it, with values equaling the pivot going either way. When this is done, the pivot is in its final position. \n \n
+        3. The above step is repeated for each subarray of smaller values as well as done separately for the subarray with greater values. \n \n
+        This is repeated until the entire array is sorted.
+    </string>
+    <string name="merge_sort_description">
+        Merge sort is a sorting algorithm that sorts data items into ascending or descending order, which comes under the category of comparison-based sorting.
+        There is applied the divide-and-conquer strategy to sort a given sequence of data items, which can be described as follows: \n \n
+        1. Recursively split the sequence into two halves (i.e. subsequences) until the subsequence contains only a single data item (i.e. singleton subsequence) \n \n
+        2. Now, recursively merge these subsequences back together preserving their required order (i.e. ascending or descending order)
+    </string>
+    <string name="shell_sort_description">
+        Shellsort is a simple extension of insertion sort that gains
+        speed by allowing exchanges of array entries that are far apart, to produce partially
+        sorted arrays that can be efficiently sorted, eventually by insertion sort. \n \n
+        The idea is to rearrange the array to give it the property that taking every hth entry
+        (starting anywhere) yields a sorted subsequence. Such an array is said to be h-sorted. Put
+        another way, an h-sorted array is h independent sorted subsequences, interleaved
+        together. By h-sorting for some large values of h, we can move items in the array
+        long distances and thus make it easier to
+        h-sort for smaller values of h. Using such
+        a procedure for any sequence of values of
+        h that ends in 1 will produce a sorted array: that is shellsort.
+    </string>
 
     <!-- Auth strings -->
     <string name="enter_email">Enter email address</string>
