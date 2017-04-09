@@ -4,7 +4,7 @@ package com.example.algol.algoritms.sorting;
  * Created by Сергей Пинкевич on 02.04.2017.
  */
 
-public class ShellSort extends Sorting {
+public class ShellSort extends SortingAlgorithm {
 
     /**
      * Move entries more than one position at a time by h-sorting the array

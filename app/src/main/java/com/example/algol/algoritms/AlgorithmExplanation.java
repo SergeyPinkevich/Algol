@@ -13,12 +13,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AlgorithmExplanation extends HandlerThread {
 
-    private boolean isStarted;
-    private boolean isPaused;
-    private Handler mHandler;
-    private Activity mActivity;
+    protected Handler mHandler;
+    protected Activity mActivity;
+    protected AlgorithmCompletedListener mCompletedListener;
 
-    private final AtomicBoolean paused = new AtomicBoolean(false);
+    public static final String COMMAND_START = "start";
+
+    protected boolean isStarted;
+    private final AtomicBoolean isPaused = new AtomicBoolean(false);
     private final Object pauseLock = new Object();
 
     public AlgorithmExplanation() {
@@ -32,7 +34,7 @@ public class AlgorithmExplanation extends HandlerThread {
     public void sleepFor(long time) {
         try {
             sleep(time);
-            if (isPaused())
+            if (getIsPaused())
                 pauseExecution();
             else resumeExecution();
         } catch (InterruptedException e) {
@@ -45,41 +47,6 @@ public class AlgorithmExplanation extends HandlerThread {
         isStarted = true;
     }
 
-    private void pauseExecution() {
-        if (paused.get())
-            synchronized (getPauseLock()) {
-                if (paused.get())
-                    try {
-                        getPauseLock().wait();
-                    } catch (InterruptedException ignored) {
-                        ignored.printStackTrace();
-                    }
-            }
-    }
-
-    private void resumeExecution() {
-        synchronized (pauseLock) {
-            pauseLock.notifyAll();
-        }
-    }
-
-    public void setPaused(boolean b) {
-        paused.set(b);
-        if (!b) {
-            synchronized (getPauseLock()) {
-                getPauseLock().notify();
-            }
-        }
-    }
-
-    public boolean isPaused() {
-        return paused.get();
-    }
-
-    Object getPauseLock() {
-        return pauseLock;
-    }
-
     public void setStarted(boolean started) {
         this.isStarted = started;
     }
@@ -88,17 +55,70 @@ public class AlgorithmExplanation extends HandlerThread {
         return isStarted;
     }
 
-    public void prepareHandler(final DataHandler dataHandler) {
+    private void pauseExecution() {
+        if (isPaused.get())
+            synchronized (getPauseLock()) {
+                if (isPaused.get())
+                    try {
+                        getPauseLock().wait();
+                    } catch (InterruptedException ignored) {
+                        ignored.printStackTrace();
+                    }
+            }
+    }
+
+    public void setIsPaused(boolean b) {
+        isPaused.set(b);
+        if (!b) {
+            synchronized (getPauseLock()) {
+                getPauseLock().notify();
+            }
+        }
+    }
+
+    public boolean getIsPaused() {
+        return isPaused.get();
+    }
+
+    Object getPauseLock() {
+        return pauseLock;
+    }
+
+    private void resumeExecution() {
+        synchronized (pauseLock) {
+            pauseLock.notifyAll();
+        }
+    }
+
+    public void sendData(Object data) { mHandler.obtainMessage(1, data).sendToTarget(); }
+
+    public void sendLog(String log) {
+        mHandler.obtainMessage(1, log).sendToTarget();
+    }
+
+    public void prepareHandler(final ExplanationHandler explanationHandler) {
         mHandler = new Handler(getLooper(), new Handler.Callback() {
             @Override
             public boolean handleMessage(Message msg) {
                 if (msg.obj instanceof String) {
-                    dataHandler.onTextReceived((String) msg.obj);
+                    explanationHandler.onCommandReceived((String) msg.obj);
                 } else {
-                    dataHandler.onDataReceived(msg.obj);
+                    explanationHandler.onDataReceived(msg.obj);
                 }
                 return true;
             }
         });
+    }
+
+    public void completed() {
+        isStarted = false;
+        if (mCompletedListener != null) {
+            mActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mCompletedListener.onAlgorithmCompleted();
+                }
+            });
+        }
     }
 }

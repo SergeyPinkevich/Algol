@@ -4,7 +4,7 @@ package com.example.algol.algoritms;
  * Created by Сергей Пинкевич on 15.02.2017.
  */
 
-public interface DataHandler {
+public interface ExplanationHandler {
     void onDataReceived(Object data);
-    void onTextReceived(String text);
+    void onCommandReceived(String text);
 }

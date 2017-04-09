@@ -4,7 +4,7 @@ package com.example.algol.algoritms.sorting;
  * Created by Сергей Пинкевич on 02.04.2017.
  */
 
-public class MergeSort extends Sorting {
+public class MergeSort extends SortingAlgorithm {
 
     /**
      * We create additional array for interim work

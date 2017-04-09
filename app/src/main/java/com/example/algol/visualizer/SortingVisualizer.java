@@ -32,7 +32,7 @@ public class SortingVisualizer extends BaseVisualizer {
 
     public void setupPaint() {
         mPaint = new Paint();
-        mPaint.setColor(Color.parseColor("#009688"));
+        mPaint.setColor(Color.parseColor("#4392F1"));
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(lineStrokeWidth);
     }
@@ -90,9 +90,9 @@ public class SortingVisualizer extends BaseVisualizer {
         invalidate();
     }
 
-    public void highlightSwap(int one, int two) {
-        this.highlightPositionFirst = one;
-        this.highlightPositionSecond = two;
+    public void highlightSwap(int first, int second) {
+        this.highlightPositionFirst = first;
+        this.highlightPositionSecond = second;
         invalidate();
     }
 

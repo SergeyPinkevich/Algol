@@ -4,7 +4,7 @@ package com.example.algol.algoritms.sorting;
  * Created by Сергей Пинкевич on 02.04.2017.
  */
 
-public class SelectionSort extends Sorting {
+public class SelectionSort extends SortingAlgorithm {
 
     /**
      * In iteration i, find index 'min' of smallest remaining entry

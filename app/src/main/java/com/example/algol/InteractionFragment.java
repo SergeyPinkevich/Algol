@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.example.algol.visualizer.BaseVisualizer;
+import com.example.algol.algoritms.sorting.BubbleSort;
+import com.example.algol.algoritms.sorting.SortingAlgorithm;
 import com.example.algol.visualizer.SortingVisualizer;
 
 
@@ -38,11 +39,13 @@ public class InteractionFragment extends Fragment {
         mFrameLayout = (FrameLayout) view.findViewById(R.id.container_for_view);
         String category = getArguments().getString(AlgorithmDetailsActivity.CATEGORY);
         switch (category) {
-            case "Sorting":
+            case "SortingAlgorithm":
                 generateArrayForSorting();
                 SortingVisualizer visualizer = new SortingVisualizer(getActivity().getApplicationContext());
-                visualizer.setData(mArraySorting);
+                SortingAlgorithm algorithm = new BubbleSort(visualizer, getActivity());
+                algorithm.setData(mArraySorting);
                 mFrameLayout.addView(visualizer);
+                algorithm.startExecution();
                 break;
         }
         return view;

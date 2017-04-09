@@ -5,7 +5,7 @@
     <string name="title_sort">Sorting</string>
     <string name="title_graph">Graph algorithms</string>
 
-    <!-- Sorting items -->
+    <!-- SortingAlgorithm items -->
     <string name="bubble_sort">Bubble Sort</string>
     <string name="insertion_sort">Insertion Sort</string>
     <string name="quick_sort">Quick Sort</string>

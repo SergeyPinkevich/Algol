@@ -4,7 +4,7 @@ package com.example.algol.algoritms.sorting;
  * Created by Сергей Пинкевич on 02.04.2017.
  */
 
-public class InsertionSort extends Sorting {
+public class InsertionSort extends SortingAlgorithm {
 
     /**
      * In iteration i, swap a[i] with each larger entry to its left
