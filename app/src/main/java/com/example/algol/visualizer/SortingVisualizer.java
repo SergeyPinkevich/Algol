@@ -25,6 +25,7 @@ public class SortingVisualizer extends BaseVisualizer {
 
     public SortingVisualizer(Context context) {
         super(context);
+        setWillNotDraw(false);
         setupPaint();
         setupHighlights();
         setupTextPaint();
