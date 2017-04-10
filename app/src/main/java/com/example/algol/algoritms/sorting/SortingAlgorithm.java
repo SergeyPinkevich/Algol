@@ -43,6 +43,15 @@ public class SortingAlgorithm extends AlgorithmExplanation implements Explanatio
         });
     }
 
+    public void completed() {
+        mActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mSortingVisualizer.onCompleted();
+            }
+        });
+    }
+
     /**
      * Good way to randomize input array
      * @param array

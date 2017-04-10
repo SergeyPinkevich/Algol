@@ -13,6 +13,7 @@ public abstract class BaseVisualizer extends View {
 
     public BaseVisualizer(Context context) {
         super(context);
+        setWillNotDraw(false);
     }
 
     @Override
