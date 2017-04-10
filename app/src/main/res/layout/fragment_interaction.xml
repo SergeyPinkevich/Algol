@@ -24,7 +24,7 @@
             android:layout_height="50dp"
             android:orientation="horizontal"
             android:layout_alignParentBottom="true"
-            android:weightSum="5">
+            android:weightSum="4">
 
             <ImageButton
                 android:id="@+id/back_origin_button"
@@ -34,10 +34,10 @@
                 android:layout_weight="1"/>
 
             <ImageButton
-                android:id="@+id/step_back_button"
+                android:id="@+id/speed_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_step_back"
+                android:src="@drawable/ic_action_speed"
                 android:layout_weight="1"/>
 
             <ImageButton
@@ -52,13 +52,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_action_step_forward"
-                android:layout_weight="1"/>
-
-            <ImageButton
-                android:id="@+id/speed_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_action_speed"
                 android:layout_weight="1"/>
 
         </LinearLayout>
