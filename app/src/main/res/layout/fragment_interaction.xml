@@ -17,14 +17,6 @@
             android:layout_height="92dp"
             android:textSize="20sp"/>
 
-        <FrameLayout
-            android:id="@+id/container_for_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_above="@id/control_buttons">
-        </FrameLayout>
-
         <!-- Layout for interaction control panel -->
         <LinearLayout
             android:id="@+id/control_buttons"
@@ -70,6 +62,14 @@
                 android:layout_weight="1"/>
 
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/container_for_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_above="@id/control_buttons">
+        </FrameLayout>
 
     </RelativeLayout>
 

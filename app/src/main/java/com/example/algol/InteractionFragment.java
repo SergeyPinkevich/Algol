@@ -68,6 +68,6 @@ public class InteractionFragment extends Fragment {
     public void generateArrayForSorting() {
         mArraySorting = new int[10];
         for (int i = 0; i < mArraySorting.length; i++)
-            mArraySorting[i] = (int) (Math.random() * 10);
+            mArraySorting[i] = (int) (Math.random() * 10) + 1;
     }
 }

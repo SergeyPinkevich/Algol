@@ -59,20 +59,20 @@ public class SortingVisualizer extends BaseVisualizer {
             int numberOfLines = mArrayForSorting.length;
 
             float margin = (getWidth() - (30 * numberOfLines)) / (numberOfLines + 1);
-            int height = getHeight() - 90;
+            int height = getHeight() - 10;
 
             float xPos = margin + getDimensionInPixel(10);
             for (int i = 0; i < mArrayForSorting.length; i++) {
 
                 if (i == highlightPositionFirst || i == highlightPositionSecond) {
-                    canvas.drawLine(xPos, height - (float) ((mArrayForSorting[i] / 10.0) * height), xPos, height, mHighlightsForSwap);
+                    canvas.drawLine(xPos, height - (float) ((mArrayForSorting[i] / 15.0) * height), xPos, height, mHighlightsForSwap);
                 } else if (i == highlightPosition)
-                    canvas.drawLine(xPos, height - (float) ((mArrayForSorting[i] / 10.0) * height), xPos, height, mHighlightsForTrace);
+                    canvas.drawLine(xPos, height - (float) ((mArrayForSorting[i] / 15.0) * height), xPos, height, mHighlightsForTrace);
                 else {
-                    canvas.drawLine(xPos, height - (float) ((mArrayForSorting[i] / 10.0) * height), xPos, height, mPaint);
+                    canvas.drawLine(xPos, height - (float) ((mArrayForSorting[i] / 15.0) * height), xPos, height, mPaint);
                 }
 
-                canvas.drawText(String.valueOf(mArrayForSorting[i]), xPos - lineStrokeWidth / 3, height - (float) ((mArrayForSorting[i] / 10.0) * height) - 30, mTextPaint);
+                canvas.drawText(String.valueOf(mArrayForSorting[i]), (xPos - lineStrokeWidth / 3) - 4, height - (float) ((mArrayForSorting[i] / 15.0) * height) - 30, mTextPaint);
 
                 xPos += margin + 30;
             }
