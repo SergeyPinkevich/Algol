@@ -11,6 +11,7 @@ import com.example.algol.visualizer.SortingVisualizer;
 public class SortingAlgorithm extends AlgorithmExplanation implements ExplanationHandler {
 
     public SortingVisualizer mSortingVisualizer;
+    protected int[] mArray;
 
     public void setData(final int[] array) {
         mActivity.runOnUiThread(new Runnable() {
@@ -19,6 +20,7 @@ public class SortingAlgorithm extends AlgorithmExplanation implements Explanatio
                 mSortingVisualizer.setData(array);
             }
         });
+        mArray = array;
         start();
         prepareHandler(this);
     }

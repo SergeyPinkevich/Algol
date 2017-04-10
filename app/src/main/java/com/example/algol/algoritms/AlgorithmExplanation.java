@@ -45,6 +45,7 @@ public class AlgorithmExplanation extends HandlerThread {
 
     public void startExecution() {
         isStarted = true;
+
     }
 
     public void setStarted(boolean started) {

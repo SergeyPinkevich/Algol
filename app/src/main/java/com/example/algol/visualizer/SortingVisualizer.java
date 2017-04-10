@@ -39,16 +39,16 @@ public class SortingVisualizer extends BaseVisualizer {
 
     public void setupHighlights() {
         mHighlightsForSwap = new Paint(mPaint);
-        mHighlightsForSwap.setColor(Color.RED);
+        mHighlightsForSwap.setColor(Color.parseColor("#F97748"));
 
         mHighlightsForTrace = new Paint(mPaint);
-        mHighlightsForTrace.setColor(Color.BLUE);
+        mHighlightsForTrace.setColor(Color.parseColor("#98FF98"));
     }
 
     public void setupTextPaint() {
         mTextPaint = new TextPaint();
         mTextPaint.setColor(Color.BLACK);
-        mTextPaint.setTextSize(getDimensionInPixelFromSP(15));
+        mTextPaint.setTextSize(getDimensionInPixelFromSP(16));
     }
 
     @Override

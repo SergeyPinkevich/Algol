@@ -12,8 +12,6 @@ import com.example.algol.visualizer.SortingVisualizer;
 
 public class BubbleSort extends SortingAlgorithm implements ExplanationHandler {
 
-    private int[] mArray;
-
     public BubbleSort(SortingVisualizer visualizer, Activity activity) {
         this.mSortingVisualizer = visualizer;
         this.mActivity = activity;
