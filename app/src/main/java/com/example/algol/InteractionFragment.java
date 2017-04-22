@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 
 import com.example.algol.algoritms.AlgorithmExplanation;
 import com.example.algol.algoritms.sorting.BubbleSort;
-import com.example.algol.algoritms.sorting.SortingAlgorithm;
 import com.example.algol.visualizer.SortingVisualizer;
 
 
@@ -50,7 +49,6 @@ public class InteractionFragment extends Fragment {
                 mAlgorithmExplanation = new BubbleSort(mSortingVisualizer, getActivity());
                 mFrameLayout.addView(mSortingVisualizer);
                 mAlgorithmExplanation.setData(mArraySorting);
-                mSortingVisualizer.setData(mArraySorting);
                 break;
         }
 

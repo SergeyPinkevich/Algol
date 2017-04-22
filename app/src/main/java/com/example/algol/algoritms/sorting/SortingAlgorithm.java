@@ -1,5 +1,8 @@
 package com.example.algol.algoritms.sorting;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.example.algol.algoritms.AlgorithmExplanation;
 import com.example.algol.algoritms.ExplanationHandler;
 import com.example.algol.visualizer.SortingVisualizer;
@@ -11,21 +14,27 @@ import com.example.algol.visualizer.SortingVisualizer;
 public class SortingAlgorithm extends AlgorithmExplanation implements ExplanationHandler {
 
     public SortingVisualizer mSortingVisualizer;
-    protected int[] mArray;
 
     public void setData(final int[] array) {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mSortingVisualizer.setData(array);
+                mSortingVisualizer.setArrayForSorting(array);
             }
         });
-        mArray = array;
         start();
         prepareHandler(this);
+        sendData(array);
     }
 
     public void highlightSwap(final int first, final int second) {
+//        Handler handler = new Handler(Looper.getMainLooper());
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mSortingVisualizer.highlightSwap(first, second);
+//            }
+//        }, 6000);
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -35,6 +44,13 @@ public class SortingAlgorithm extends AlgorithmExplanation implements Explanatio
     }
 
     public void highlightTrace(final int position) {
+//        Handler handler = new Handler(Looper.getMainLooper());
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mSortingVisualizer.highlightTrace(position);
+//            }
+//        }, 6000);
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {

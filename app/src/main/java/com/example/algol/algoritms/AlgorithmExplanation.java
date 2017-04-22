@@ -28,7 +28,7 @@ public class AlgorithmExplanation extends HandlerThread {
     }
 
     public void sleep() {
-        sleepFor(500);
+        sleepFor(400);
     }
 
     public void sleepFor(long time) {

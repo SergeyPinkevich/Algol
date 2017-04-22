@@ -25,10 +25,10 @@ public class SortingVisualizer extends BaseVisualizer {
 
     public SortingVisualizer(Context context) {
         super(context);
-        setWillNotDraw(false);
         setupPaint();
         setupHighlights();
         setupTextPaint();
+        setWillNotDraw(false);
     }
 
     public void setupPaint() {
@@ -86,7 +86,7 @@ public class SortingVisualizer extends BaseVisualizer {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    public void setData(int[] array) {
+    public void setArrayForSorting(int[] array) {
         this.mArrayForSorting = array;
         invalidate();
     }
@@ -99,7 +99,7 @@ public class SortingVisualizer extends BaseVisualizer {
 
     public void highlightTrace(int position) {
         this.highlightPosition = position;
-        invalidate();
+        super.invalidate();
     }
 
     public void onCompleted() {

@@ -12,9 +12,16 @@ import com.example.algol.visualizer.SortingVisualizer;
 
 public class BubbleSort extends SortingAlgorithm implements ExplanationHandler {
 
+    private int[] mArray;
+
     public BubbleSort(SortingVisualizer visualizer, Activity activity) {
         this.mSortingVisualizer = visualizer;
         this.mActivity = activity;
+    }
+
+    @Override
+    public void run() {
+        super.run();
     }
 
     /**
@@ -24,14 +31,17 @@ public class BubbleSort extends SortingAlgorithm implements ExplanationHandler {
      */
     public int[] sort() {
         for (int i = 0; i < mArray.length - 1; i++) {
+            highlightTrace(i);
+            sleep();
             for (int j = 0; j < mArray.length - i - 1; j++) {
                 highlightTrace(j);
-                sleep();
                 if (mArray[j] > mArray[j + 1]) {
+                    int temp = mArray[j];
+                    mArray[j] = mArray[j + 1];
+                    mArray[j + 1] = temp;
                     highlightSwap(j, j + 1);
-                    swap(j, j + 1, mArray);
-                    sleep();
                 }
+                sleep();
             }
         }
         completed();

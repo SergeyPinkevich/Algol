@@ -37,6 +37,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'org.adw.library:discrete-seekbar:1.0.1'
+    compile 'com.felipecsl:gifimageview:2.1.0'
+    compile 'commons-io:commons-io:2.4'
 }
 
 apply plugin: 'com.google.gms.google-services'
