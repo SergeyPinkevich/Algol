@@ -4,4 +4,31 @@
              android:layout_height="match_parent"
              tools:context="com.example.algol.navigation.NotificationFragment">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:padding="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notification enabled"
+            android:textSize="20sp"/>
+
+        <ToggleButton
+            android:id="@+id/toggle_reverse_order"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/toggle_switch"
+            android:shadowRadius="0"
+            android:shadowColor="@color/white"
+            android:textOff=""
+            android:textOn=""
+            android:checked="true"/>
+
+    </RelativeLayout>
+
 </FrameLayout>

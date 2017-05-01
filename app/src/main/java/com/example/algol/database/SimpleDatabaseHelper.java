@@ -61,7 +61,9 @@ public class SimpleDatabaseHelper extends SQLiteOpenHelper {
         algorithmRepo.addAlgorithm(db, new Algorithm(1, "Selection Sort", "Sorting", mContext.getString(R.string.selection_sort_description), "n_2"));
         algorithmRepo.addAlgorithm(db, new Algorithm(2, "Insertion Sort", "Sorting", mContext.getString(R.string.insertion_sort_description), "n_2"));
         algorithmRepo.addAlgorithm(db, new Algorithm(3, "Quick Sort", "Sorting", mContext.getString(R.string.quick_sort_description), "n * log(n)"));
-        algorithmRepo.addAlgorithm(db, new Algorithm(4, "Merge Sort", "Sorting", mContext.getString(R.string.merge_sort_description), "n * log(n)"));
-        algorithmRepo.addAlgorithm(db, new Algorithm(5, "Shell Sort", "Sorting", mContext.getString(R.string.shell_sort_description), "n * log^2(n)"));
+        algorithmRepo.addAlgorithm(db, new Algorithm(5, "Counting Sort", "Sorting", mContext.getString(R.string.shell_sort_description), "n * log^2(n)"));
+        algorithmRepo.addAlgorithm(db, new Algorithm(6, "Breadth First Search", "Graph", mContext.getString(R.string.shell_sort_description), "n * log^2(n)"));
+        algorithmRepo.addAlgorithm(db, new Algorithm(7, "Depth First Search", "Graph", mContext.getString(R.string.shell_sort_description), "n * log^2(n)"));
+        algorithmRepo.addAlgorithm(db, new Algorithm(8, "Dijkstra algorithm", "Graph", mContext.getString(R.string.shell_sort_description), "n * log^2(n)"));
     }
 }
