@@ -99,7 +99,7 @@ public class SortingVisualizer extends BaseVisualizer {
 
     public void highlightTrace(int position) {
         this.highlightPosition = position;
-        super.invalidate();
+        invalidate();
     }
 
     public void onCompleted() {

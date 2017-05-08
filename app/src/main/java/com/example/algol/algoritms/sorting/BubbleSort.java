@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.example.algol.algoritms.AlgorithmExplanation;
 import com.example.algol.algoritms.ExplanationHandler;
+import com.example.algol.log.SortingLog;
 import com.example.algol.visualizer.SortingVisualizer;
 
 /**
@@ -35,14 +36,19 @@ public class BubbleSort extends SortingAlgorithm implements ExplanationHandler {
             sleep();
             for (int j = 0; j < mArray.length - i - 1; j++) {
                 highlightTrace(j);
+
+                String swap = SortingLog.explanationMessage(mArray[j], mArray[j + 1]);
+
+
                 if (mArray[j] > mArray[j + 1]) {
+                    highlightSwap(j, j + 1);
                     int temp = mArray[j];
                     mArray[j] = mArray[j + 1];
                     mArray[j + 1] = temp;
-                    highlightSwap(j, j + 1);
+                    sleep();
                 }
-                sleep();
             }
+            sleep();
         }
         completed();
         return mArray;
@@ -52,7 +58,7 @@ public class BubbleSort extends SortingAlgorithm implements ExplanationHandler {
     @Override
     public void onDataReceived(Object data) {
         super.onDataReceived(data);
-        mArray = (int[]) data;
+        this.mArray = (int[]) data;
     }
 
     @Override
