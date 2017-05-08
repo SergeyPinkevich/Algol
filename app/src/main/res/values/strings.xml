@@ -106,4 +106,8 @@
     <string name="start_button">START</string>
     <string name="error">Connection error</string>
 
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="suggest">Suggest</string>
+
 </resources>

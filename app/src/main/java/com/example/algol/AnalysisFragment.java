@@ -31,9 +31,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class AnalysisFragment extends Fragment {
 
-    private static AlgolRestApi sRestApi;
-    private Retrofit mRetrofit;
-
     private DiscreteSeekBar mNumberElementsBar;
     private DiscreteSeekBar mMaximumElementBar;
 
@@ -58,58 +55,45 @@ public class AnalysisFragment extends Fragment {
     }
 
     public void APIRequest(int numberElements, int maximumElement, boolean isSorted, boolean reverseOrder) {
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl("http://a9fa3249.ngrok.io/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        sRestApi = mRetrofit.create(AlgolRestApi.class);
-
         Callback<Double> callback = createCallbackForRetrofit();
 
         String name = mAlgorithm.getName();
         switch (name) {
-            case "Bubble sort":
-                sRestApi.bubbleSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+            case "Bubble Sort":
+                MenuActivity.sRestApi.bubbleSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
                 break;
-            case "Selection sort":
-                sRestApi.selectionSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+            case "Selection Sort":
+                MenuActivity.sRestApi.selectionSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
                 break;
-            case "Insertion sort":
-                sRestApi.insertionSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+            case "Insertion Sort":
+                MenuActivity.sRestApi.insertionSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
                 break;
-            case "Quick sort":
-                sRestApi.quickSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+            case "Quick Sort":
+                MenuActivity.sRestApi.quickSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
                 break;
-            case "Merge sort":
-                sRestApi.mergeSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
-                break;
-            case "Shell sort":
-                sRestApi.shellSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
+            case "Counting Sort":
+                MenuActivity.sRestApi.countingSort(numberElements, maximumElement, isSorted, reverseOrder).enqueue(callback);
                 break;
         }
     }
 
     public Callback<Double> createCallbackForRetrofit() {
-        final Drawable drawable = getResources().getDrawable(R.color.aquamarine);
         return new Callback<Double>() {
             @Override
             public void onResponse(Call<Double> call, Response<Double> response) {
                 Double val = response.body();
                 mTime.setText(getResources().getString(R.string.time) + " " + getTimeFormat(val.longValue()));
-                setButtonNonActive(drawable);
+                mStart.setEnabled(true);
+                mStart.setBackgroundColor(getResources().getColor(R.color.aquamarine));
             }
 
             @Override
             public void onFailure(Call<Double> call, Throwable t) {
-                setButtonNonActive(drawable);
+                mStart.setEnabled(true);
+                mStart.setBackgroundColor(getResources().getColor(R.color.aquamarine));
                 Toast.makeText(getActivity(), R.string.error, Toast.LENGTH_SHORT).show();
             }
         };
-    }
-
-    public void setButtonNonActive(final Drawable drawable) {
-        mStart.setEnabled(false);
-        mStart.setBackground(drawable);
     }
 
     private void initializeAlgorithm() {
@@ -131,11 +115,11 @@ public class AnalysisFragment extends Fragment {
         mTime = (TextViewHelvetica) view.findViewById(R.id.time);
 
         mStart = (Button) view.findViewById(R.id.start_button);
+        mStart.setEnabled(true);
         mStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 APIRequest(mNumberElementsBar.getProgress(), mMaximumElementBar.getProgress(), mSortedToggle.isChecked(), mReverseToggle.isChecked());
-
                 mStart.setEnabled(false);
                 Drawable drawable = getResources().getDrawable(R.color.lightGray);
                 mStart.setBackground(drawable);

@@ -37,6 +37,8 @@
             android:name=".auth.LoginActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
+        <activity android:name=".NewAlgorithmActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -4,6 +4,7 @@ package com.example.algol.navigation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,9 +16,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.algol.Algorithm;
 import com.example.algol.AlgorithmDetailsActivity;
+import com.example.algol.NewAlgorithmActivity;
 import com.example.algol.R;
 import com.example.algol.RecyclerMenuAdapter;
 import com.example.algol.database.AlgorithmRepo;
@@ -36,6 +39,7 @@ public class HomeFragment extends Fragment {
     private List<String> items;
     private RecyclerView mRecyclerView;
     private RecyclerMenuAdapter adapter;
+    private FloatingActionButton mSubmit;
 
     public HomeFragment() {
         // Empty constructor
@@ -61,9 +65,13 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(inflater.getContext());
         mRecyclerView.setLayoutManager(layoutManager);
 
-        adapter.setListener(new RecyclerMenuAdapter.Listener() {
-            @Override
-            public void onClick(int position) {
+        mSubmit = (FloatingActionButton) rootView.findViewById(R.id.add_algorithm);
+        mSubmit.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), NewAlgorithmActivity.class);
+            startActivity(intent);
+        });
+
+        adapter.setListener(position -> {
                 Intent intent = new Intent(inflater.getContext(), AlgorithmDetailsActivity.class);
                 String name = items.get(position);
                 for (Algorithm a : algorithmsList)
@@ -71,7 +79,7 @@ public class HomeFragment extends Fragment {
                         intent.putExtra(AlgorithmDetailsActivity.ALGORITHM_ID, a.getId());
                 startActivity(intent);
             }
-        });
+        );
 
         return rootView;
     }

@@ -18,7 +18,11 @@ import com.example.algol.auth.LoginActivity;
 import com.example.algol.navigation.HomeFragment;
 import com.example.algol.navigation.NotificationFragment;
 import com.example.algol.navigation.SettingsFragment;
+import com.example.algol.retrofit.AlgolRestApi;
 import com.google.firebase.auth.FirebaseAuth;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -32,6 +36,9 @@ public class MenuActivity extends AppCompatActivity {
     private TextView mUserEmailText;
     private String mUserEmail;
 
+    private Retrofit mRetrofit;
+    public static AlgolRestApi sRestApi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +48,19 @@ public class MenuActivity extends AppCompatActivity {
 
         setupNavigationView();
 
+        retrofitClient();
+
 //        setUserEmail();
 
         setNewFragment(new HomeFragment());
+    }
+
+    public void retrofitClient() {
+        mRetrofit = new Retrofit.Builder()
+                .baseUrl("http://bfc50562.ngrok.io/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        sRestApi = mRetrofit.create(AlgolRestApi.class);
     }
 
     private void setUserEmail() {
@@ -76,11 +93,6 @@ public class MenuActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
                         setNewFragment(new HomeFragment());
-                        item.setChecked(true);
-                        mDrawerLayout.closeDrawers();
-                        break;
-                    case R.id.nav_settings:
-                        setNewFragment(new SettingsFragment());
                         item.setChecked(true);
                         mDrawerLayout.closeDrawers();
                         break;
